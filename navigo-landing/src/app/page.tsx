@@ -2,6 +2,7 @@ import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/sections/HeroSection';
 import FeatureBoxes from '@/components/sections/FeatureBoxes';
 import HowItWorksSection from '@/components/sections/HowItWorksSection';
+import JourneyTransformationSection from '@/components/sections/JourneyTransformationSection';
 import FAQSection from '@/components/sections/FAQSection';
 import Footer from '@/components/layout/Footer';
 
@@ -49,6 +50,21 @@ export default function Home() {
               fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
             <circle cx="40" cy="20" r="4" fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
             <circle cx="40" cy="20" r="2" fill="#FF9933" opacity="0.4" />
+          </svg>
+        </div>
+      </div>
+      
+      <JourneyTransformationSection />
+      
+      {/* Decorative wave element between sections */}
+      <div className="py-8 bg-white">
+        <div className="max-w-7xl mx-auto flex justify-center">
+          <svg width="200" height="24" viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,12 C20,6 40,18 60,12 C80,6 100,18 120,12 C140,6 160,18 180,12 C200,6 220,18 240,12" 
+              fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
+            <circle cx="60" cy="12" r="3" fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
+            <circle cx="120" cy="12" r="3" fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
+            <circle cx="180" cy="12" r="3" fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
           </svg>
         </div>
       </div>
