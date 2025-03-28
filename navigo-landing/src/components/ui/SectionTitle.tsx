@@ -5,6 +5,7 @@ interface SectionTitleProps {
   title: string;
   subtitle?: string;
   centered?: boolean;
+  accentColor?: 'primary' | 'secondary' | 'earth';
 }
 
 export default function SectionTitle({ 

@@ -23,7 +23,7 @@ interface JourneyScenario {
 
 const JourneyTransformationSection: React.FC = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const controls = useAnimation();
   const isMobile = useMobile();
 

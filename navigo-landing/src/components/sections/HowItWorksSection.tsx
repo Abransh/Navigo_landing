@@ -28,7 +28,7 @@ const ProcessStep = ({
   isLast?: boolean;
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const controls = useAnimation();
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const ProcessStep = ({
 // Main How It Works component
 export default function HowItWorksSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const controls = useAnimation();
 
   useEffect(() => {
