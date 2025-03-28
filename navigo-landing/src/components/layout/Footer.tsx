@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight, Facebook, Instagram, Twitter, Mail, MapPin, Send } from 'lucide-react';
+// import Image from 'next/image';
+import { Facebook, Instagram, Twitter, Mail, MapPin, Send } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {

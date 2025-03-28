@@ -20,48 +20,7 @@ const FeatureBoxes: React.FC = () => {
   const isMobile = useMobile();
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.2, // Trigger a bit earlier for smoother experience
-    };
-
-    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("opacity-100", "translate-y-0");
-          entry.target.classList.remove("opacity-0", "translate-y-20");
-        } else {
-          // Only add the fade out effect if the element has moved above the viewport
-          if (entry.boundingClientRect.y < 0) {
-            entry.target.classList.add("opacity-0");
-            entry.target.classList.remove("opacity-100");
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-    sectionRefs.current.forEach((section) => {
-      if (section) observer.observe(section);
-    });
-
-    return () => {
-      sectionRefs.current.forEach((section) => {
-        if (section) observer.unobserve(section);
-      });
-    };
-  }, []);
-
-  // If mobile, render the mobile version
-  if (isMobile) {
-    return <FeatureBoxesMobile />;
-  }
-
-  // Desktop version
-  const featureBoxes = useMemo(
+  const featureBoxes = useMemo<FeatureBox[]>(
     () => [
       {
         title: "Enhanced Safety for All Travelers",
@@ -99,6 +58,47 @@ const FeatureBoxes: React.FC = () => {
     []
   );
 
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.2,
+    };
+
+    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          entry.target.classList.remove("opacity-0", "translate-y-20");
+        } else {
+          if (entry.boundingClientRect.y < 0) {
+            entry.target.classList.add("opacity-0");
+            entry.target.classList.remove("opacity-100");
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+    const currentRefs = sectionRefs.current;
+
+    currentRefs.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      currentRefs.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
+
+  // If mobile, render the mobile version
+  if (isMobile) {
+    return <FeatureBoxesMobile />;
+  }
+
+  // Desktop version
   return (
     <section id="benefits" className="py-20 bg-sand">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

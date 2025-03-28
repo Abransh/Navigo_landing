@@ -153,7 +153,7 @@ const FAQSection: React.FC = () => {
         
         {/* Bottom CTA and decorative element */}
         <div className="mt-12 text-center">
-          <p className="text-foreground-muted mb-6">Still have questions? We're here to help!</p>
+          <p className="text-foreground-muted mb-6">Still have questions? We&apos;re here to help!</p>
           <div className="inline-flex items-center">
             <div className="h-px w-8 bg-earth opacity-30"></div>
             <button className="mx-4 bg-secondary hover:bg-secondary-dark text-white px-6 py-3 rounded-lg font-heading font-medium transition-colors shadow-md">

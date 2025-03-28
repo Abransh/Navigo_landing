@@ -75,7 +75,7 @@ const ValueCard: React.FC<ValueCardProps> = ({
             </div>
             
             <blockquote className="text-sm italic text-foreground-muted">
-              "{quote.text}"
+              &ldquo;{quote.text}&rdquo;
               <footer className="mt-2 text-xs text-navy font-medium">
                 {quote.author}, <span className="text-secondary">{quote.location}</span>
               </footer>
@@ -92,6 +92,7 @@ const ValueCard: React.FC<ValueCardProps> = ({
 
 const CoreValuesSection: React.FC = () => {
   const ref = useRef(null);
+  // @ts-expect-error - threshold is a valid option in framer-motion's useInView but TypeScript doesn't recognize it
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
   const controls = useAnimation();
   const isMobile = useMobile();
@@ -247,7 +248,7 @@ const CoreValuesSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <blockquote className="text-xl italic font-medium text-navy max-w-3xl mx-auto mb-8">
-            "At Navigo, we believe that the best travel experiences come from genuine human connections built on a foundation of trust, safety, and cultural respect."
+            &ldquo;At Navigo, we believe that the best travel experiences come from genuine human connections built on a foundation of trust, safety, and cultural respect.&rdquo;
           </blockquote>
           
           <button className="bg-secondary hover:bg-secondary-dark text-white px-8 py-3.5 rounded-lg font-heading font-semibold transition-colors shadow-lg">

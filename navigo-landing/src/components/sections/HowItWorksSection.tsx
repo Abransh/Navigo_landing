@@ -9,7 +9,8 @@ import {
   Map, 
   Calendar, 
   Heart, 
-  Shield 
+  Shield,
+  LucideIcon 
 } from 'lucide-react';
 
 // Step component for each step in the process
@@ -23,7 +24,7 @@ const ProcessStep = ({
   number: number; 
   title: string; 
   description: string; 
-  icon: any; 
+  icon: LucideIcon; 
   isLast?: boolean;
 }) => {
   const ref = useRef(null);
@@ -142,7 +143,7 @@ export default function HowItWorksSection() {
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className="lg:w-1/2">
             <div className="space-y-12">
-              {steps.map((step, index) => (
+              {steps.map((step) => (
                 <ProcessStep
                   key={step.number}
                   number={step.number}

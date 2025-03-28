@@ -5,24 +5,13 @@ interface SectionTitleProps {
   title: string;
   subtitle?: string;
   centered?: boolean;
-  accentColor?: 'primary' | 'secondary' | 'earth';
 }
 
 export default function SectionTitle({ 
   title, 
   subtitle, 
-  centered = true,
-  accentColor = 'secondary'
+  centered = true
 }: SectionTitleProps) {
-  // Map accent colors to Tailwind classes
-  const accentColorMap = {
-    primary: 'bg-primary',
-    secondary: 'bg-secondary',
-    earth: 'bg-earth'
-  };
-  
-  const accentClass = accentColorMap[accentColor];
-
   return (
     <div className={`mb-12 ${centered ? 'text-center' : ''}`}>
       <div className="inline-block relative mb-4">
