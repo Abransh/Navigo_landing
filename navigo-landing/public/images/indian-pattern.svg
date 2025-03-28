@@ -1,0 +1,35 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Paisley/Mandala inspired pattern -->
+  <defs>
+    <pattern id="indianPattern" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+      <!-- Central Flower -->
+      <circle cx="60" cy="60" r="10" fill="none" stroke="#FFF8EA" stroke-width="1" />
+      <circle cx="60" cy="60" r="15" fill="none" stroke="#FFF8EA" stroke-width="1" />
+      <circle cx="60" cy="60" r="20" fill="none" stroke="#FFF8EA" stroke-width="1" />
+      
+      <!-- Petals -->
+      <path d="M60 40 Q70 50 60 60 Q50 50 60 40" fill="none" stroke="#FFF8EA" stroke-width="1" />
+      <path d="M60 40 Q70 50 60 60 Q50 50 60 40" fill="none" stroke="#FFF8EA" stroke-width="1" transform="rotate(45 60 60)" />
+      <path d="M60 40 Q70 50 60 60 Q50 50 60 40" fill="none" stroke="#FFF8EA" stroke-width="1" transform="rotate(90 60 60)" />
+      <path d="M60 40 Q70 50 60 60 Q50 50 60 40" fill="none" stroke="#FFF8EA" stroke-width="1" transform="rotate(135 60 60)" />
+      <path d="M60 40 Q70 50 60 60 Q50 50 60 40" fill="none" stroke="#FFF8EA" stroke-width="1" transform="rotate(180 60 60)" />
+      <path d="M60 40 Q70 50 60 60 Q50 50 60 40" fill="none" stroke="#FFF8EA" stroke-width="1" transform="rotate(225 60 60)" />
+      <path d="M60 40 Q70 50 60 60 Q50 50 60 40" fill="none" stroke="#FFF8EA" stroke-width="1" transform="rotate(270 60 60)" />
+      <path d="M60 40 Q70 50 60 60 Q50 50 60 40" fill="none" stroke="#FFF8EA" stroke-width="1" transform="rotate(315 60 60)" />
+      
+      <!-- Corner decorations -->
+      <path d="M10 10 Q15 15 20 10 Q25 15 30 10" fill="none" stroke="#FFF8EA" stroke-width="1" />
+      <path d="M90 10 Q95 15 100 10 Q105 15 110 10" fill="none" stroke="#FFF8EA" stroke-width="1" />
+      <path d="M10 110 Q15 105 20 110 Q25 105 30 110" fill="none" stroke="#FFF8EA" stroke-width="1" />
+      <path d="M90 110 Q95 105 100 110 Q105 105 110 110" fill="none" stroke="#FFF8EA" stroke-width="1" />
+      
+      <!-- Small dots pattern -->
+      <circle cx="30" cy="30" r="2" fill="#FF9933" opacity="0.3" />
+      <circle cx="90" cy="30" r="2" fill="#FF9933" opacity="0.3" />
+      <circle cx="30" cy="90" r="2" fill="#FF9933" opacity="0.3" />
+      <circle cx="90" cy="90" r="2" fill="#FF9933" opacity="0.3" />
+    </pattern>
+  </defs>
+  
+  <rect width="120" height="120" fill="url(#indianPattern)" />
+</svg>

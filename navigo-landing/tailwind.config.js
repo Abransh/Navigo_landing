@@ -38,8 +38,12 @@ module.exports = {
           "border-strong": '#BE5504',
         },
         fontFamily: {
-          sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
-          body: ['var(--font-work-sans)', 'system-ui', 'sans-serif'],
+          // Using Montserrat for headers and titles
+          heading: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+          // Using Inter for body text
+          body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+          // Setting sans to the body font for convenience
+          sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         },
         boxShadow: {
           card: '0px 4px 12px rgba(0, 0, 0, 0.05)',
