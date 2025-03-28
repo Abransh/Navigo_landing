@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 400">
+  <!-- Background fill -->
+  <rect width="100" height="400" fill="#1A5F7A" opacity="0.05"/>
+  
+  <!-- Vertical repeating pattern inspired by Indian textile designs -->
+  <g stroke="#BE5504" stroke-width="1" fill="none" opacity="0.3">
+    <!-- Repeating motif 1 -->
+    <path d="M50,20 C60,30 70,20 80,30 C90,40 80,50 90,60 C80,70 70,60 60,70 C50,80 40,70 30,80 C20,90 10,80 0,90"/>
+    <path d="M50,120 C60,130 70,120 80,130 C90,140 80,150 90,160 C80,170 70,160 60,170 C50,180 40,170 30,180 C20,190 10,180 0,190"/>
+    <path d="M50,220 C60,230 70,220 80,230 C90,240 80,250 90,260 C80,270 70,260 60,270 C50,280 40,270 30,280 C20,290 10,280 0,290"/>
+    <path d="M50,320 C60,330 70,320 80,330 C90,340 80,350 90,360 C80,370 70,360 60,370 C50,380 40,370 30,380 C20,390 10,380 0,390"/>
+    
+    <!-- Repeating motif 2 -->
+    <circle cx="50" cy="50" r="15"/>
+    <circle cx="50" cy="150" r="15"/>
+    <circle cx="50" cy="250" r="15"/>
+    <circle cx="50" cy="350" r="15"/>
+    
+    <!-- Decorative elements -->
+    <path d="M30,50 L70,50 M50,30 L50,70" stroke-dasharray="2,2"/>
+    <path d="M30,150 L70,150 M50,130 L50,170" stroke-dasharray="2,2"/>
+    <path d="M30,250 L70,250 M50,230 L50,270" stroke-dasharray="2,2"/>
+    <path d="M30,350 L70,350 M50,330 L50,370" stroke-dasharray="2,2"/>
+    
+    <!-- Small decorative elements -->
+    <circle cx="50" cy="50" r="3" fill="#FF9933" stroke="none"/>
+    <circle cx="50" cy="150" r="3" fill="#FF9933" stroke="none"/>
+    <circle cx="50" cy="250" r="3" fill="#FF9933" stroke="none"/>
+    <circle cx="50" cy="350" r="3" fill="#FF9933" stroke="none"/>
+  </g>
+</svg>
