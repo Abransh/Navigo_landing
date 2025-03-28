@@ -2,6 +2,8 @@ import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/sections/HeroSection';
 import FeatureBoxes from '@/components/sections/FeatureBoxes';
 import HowItWorksSection from '@/components/sections/HowItWorksSection';
+import FAQSection from '@/components/sections/FAQSection';
+import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   return (
@@ -38,7 +40,21 @@ export default function Home() {
         </div>
       </div>
       <HowItWorksSection />
-      {/* Add more sections as they're developed */}
+      
+      {/* Decorative element - lotus-inspired transition */}
+      <div className="bg-sand py-8">
+        <div className="max-w-7xl mx-auto flex justify-center">
+          <svg width="80" height="40" viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40,0 C50,20 60,20 80,20 C60,20 50,20 40,40 C30,20 20,20 0,20 C20,20 30,20 40,0 Z" 
+              fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
+            <circle cx="40" cy="20" r="4" fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
+            <circle cx="40" cy="20" r="2" fill="#FF9933" opacity="0.4" />
+          </svg>
+        </div>
+      </div>
+      
+      <FAQSection />
+      <Footer />
     </main>
   );
 }
