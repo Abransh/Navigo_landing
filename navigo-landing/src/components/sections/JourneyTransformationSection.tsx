@@ -37,12 +37,12 @@ const JourneyTransformationSection: React.FC = () => {
     {
       title: "Communication",
       without: {
-        image: "/images/without-communication.jpg",
+        image: "/images/featuresbox1.jpg",
         caption: "Struggle with language barriers and miscommunications",
         icon: <X className="w-4 h-4 text-white" />
       },
       with: {
-        image: "/images/with-communication.jpg",
+        image: "/images/featuresbox1.jpg",
         caption: "Communicate effortlessly with locals through your bilingual companion",
         icon: <Check className="w-4 h-4 text-white" />
       }

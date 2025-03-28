@@ -120,3 +120,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom animations for Core Values Section */
+.animate-slow-spin {
+  animation: spin 18s linear infinite;
+}
+
+.animate-reverse-slow-spin {
+  animation: spin 12s linear infinite reverse;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
