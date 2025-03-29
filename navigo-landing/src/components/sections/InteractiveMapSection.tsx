@@ -12,7 +12,6 @@ const serviceRegions = [
     id: "delhi",
     name: "Delhi",
     position: { x: 180, y: 120 },
-    companions: 75,
     description: "Explore the historical monuments and vibrant markets of India's capital city with our knowledgeable local companions.",
     highlights: ["Old Delhi", "Red Fort", "Qutub Minar", "Humayun's Tomb"],
     active: true
@@ -21,25 +20,22 @@ const serviceRegions = [
     id: "jaipur",
     name: "Jaipur",
     position: { x: 155, y: 170 },
-    companions: 42,
     description: "Discover the 'Pink City' and its majestic forts and palaces with guides who know every hidden gem.",
     highlights: ["Amber Fort", "City Palace", "Hawa Mahal", "Local Markets"],
     active: true
   },
   {
-    id: "agra",
-    name: "Agra",
-    position: { x: 195, y: 160 },
-    companions: 38,
-    description: "Visit the iconic Taj Mahal and explore the rich Mughal heritage beyond the typical tourist experience.",
-    highlights: ["Taj Mahal", "Agra Fort", "Fatehpur Sikri", "Local Crafts"],
+    id: "jodhpur",
+    name: "Jodhpur",
+    position: { x: 135, y: 190 },
+    description: "Experience the 'Blue City' with its imposing fort and maze-like streets known only to locals.",
+    highlights: ["Mehrangarh Fort", "Clock Tower Market", "Blue City Walk", "Desert Excursions"],
     active: true
   },
   {
     id: "mumbai",
     name: "Mumbai",
     position: { x: 130, y: 270 },
-    companions: 65,
     description: "Navigate the bustling streets of India's financial capital with locals who understand its unique rhythm and soul.",
     highlights: ["Gateway of India", "Dharavi", "Local Food Tours", "Bollywood"],
     active: true
@@ -48,7 +44,6 @@ const serviceRegions = [
     id: "goa",
     name: "Goa",
     position: { x: 120, y: 310 },
-    companions: 35,
     description: "Relax on pristine beaches and experience Portuguese influence with companions who know more than just tourist spots.",
     highlights: ["Hidden Beaches", "Old Goa Churches", "Spice Plantations", "Local Cuisine"],
     active: true
@@ -57,7 +52,6 @@ const serviceRegions = [
     id: "varanasi",
     name: "Varanasi",
     position: { x: 252, y: 190 },
-    companions: 28,
     description: "Immerse in the spiritual capital of India with guides who understand its deep religious and cultural significance.",
     highlights: ["Ganges Ghats", "Morning Rituals", "Ancient Temples", "Cultural Performances"],
     active: true
@@ -66,7 +60,6 @@ const serviceRegions = [
     id: "bangalore",
     name: "Bangalore",
     position: { x: 170, y: 335 },
-    companions: 55,
     description: "Experience the perfect blend of tradition and technology in India's Silicon Valley with our tech-savvy companions.",
     highlights: ["Cubbon Park", "MG Road", "Local Breweries", "Tech Parks"],
     active: true
@@ -75,25 +68,14 @@ const serviceRegions = [
     id: "chennai",
     name: "Chennai",
     position: { x: 220, y: 355 },
-    companions: 40,
     description: "Discover South Indian culture, arts, and cuisine with companions who bring the city's heritage to life.",
     highlights: ["Marina Beach", "Kapaleeshwarar Temple", "Music Academies", "South Indian Cuisine"],
     active: true
   },
   {
-    id: "kolkata",
-    name: "Kolkata",
-    position: { x: 310, y: 210 },
-    companions: 32,
-    description: "Explore the intellectual and cultural capital of India with companions who appreciate its colonial architecture and artistic heritage.",
-    highlights: ["Victoria Memorial", "Howrah Bridge", "College Street", "Bengali Cuisine"],
-    active: true
-  },
-  {
     id: "udaipur",
     name: "Udaipur",
-    position: { x: 130, y: 210 },
-    companions: 25,
+    position: { x: 145, y: 210 },
     description: "Experience the romantic 'City of Lakes' with locals who know its royal history and scenic beauty intimately.",
     highlights: ["Lake Pichola", "City Palace", "Vintage Car Museum", "Local Arts"],
     active: true
@@ -103,7 +85,6 @@ const serviceRegions = [
     id: "kochi",
     name: "Kochi",
     position: { x: 160, y: 390 },
-    companions: 0,
     description: "Coming soon! Explore Kerala's beautiful port city with its unique blend of cultures and beautiful backwaters.",
     highlights: ["Fort Kochi", "Chinese Fishing Nets", "Backwaters", "Spice Markets"],
     active: false
@@ -112,7 +93,6 @@ const serviceRegions = [
     id: "amritsar",
     name: "Amritsar",
     position: { x: 145, y: 100 },
-    companions: 0,
     description: "Coming soon! Visit the spiritual center of Sikhism and experience the unique border culture of this vibrant city.",
     highlights: ["Golden Temple", "Wagah Border", "Punjabi Cuisine", "Local Traditions"],
     active: false
@@ -121,7 +101,6 @@ const serviceRegions = [
     id: "darjeeling",
     name: "Darjeeling",
     position: { x: 330, y: 160 },
-    companions: 0,
     description: "Coming soon! Explore the breathtaking tea gardens and Himalayan views with companions who know every scenic spot.",
     highlights: ["Tea Gardens", "Himalayan Railway", "Tiger Hill", "Buddhist Monasteries"],
     active: false
@@ -170,33 +149,65 @@ const InteractiveMapSection: React.FC = () => {
         <div className="mt-12 flex flex-col lg:flex-row gap-8">
           {/* Map container */}
           <div className="w-full lg:w-2/3 bg-sand rounded-2xl p-6 shadow-lg relative" ref={mapRef}>
-            {/* India map SVG */}
+                          {/* India map SVG */}
             <div className="relative w-full h-[500px] bg-sand">
-              {/* Base outline of India */}
-              <svg
-                viewBox="0 0 450 500"
-                className="w-full h-full"
-                fill="none"
+              {/* Better outline of India */}
+              <svg 
+                viewBox="0 0 400 480" 
+                className="w-full h-full" 
+                fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
               >
-                {/* India outline */}
-                <path
-                  d="M138,60 C142,55 145,45 152,47 C159,49 165,55 172,52 C179,49 186,46 193,44 C200,42 207,38 214,41 C221,44 228,43 235,44 C242,45 249,47 256,48 C263,49 270,51 277,53 C284,55 291,57 298,59 C305,61 312,63 319,65 C326,67 333,68 340,70 C347,72 354,74 361,76 C368,78 375,80 382,81 C389,82 396,84 402,86 C408,88 414,91 420,93 C426,95 432,97 438,99 C437,106 436,113 434,120 C432,127 430,134 428,141 C426,148 423,154 421,161 C419,168 416,175 414,182 C412,189 409,196 406,202 C403,208 400,214 397,220 C394,226 391,232 388,238 C385,244 382,250 379,256 C376,262 373,268 370,274 C367,280 363,286 359,292 C355,298 349,303 345,309 C341,315 337,321 334,328 C331,335 328,342 325,349 C322,356 318,363 316,370 C314,377 312,384 309,391 C306,398 304,406 301,413 C298,420 294,427 291,434 C288,441 286,448 284,456 C282,464 280,472 278,480 C272,478 267,476 262,472 C257,468 251,464 247,460 C243,456 238,451 235,446 C232,441 226,437 223,432 C220,427 216,422 213,417 C210,412 206,407 203,402 C200,397 195,392 192,387 C189,382 186,377 182,373 C178,369 174,365 171,360 C168,355 163,351 161,346 C159,341 155,336 152,332 C149,328 147,324 144,320 C141,316 138,312 135,308 C132,304 130,300 127,296 C124,292 121,289 119,285 C117,281 114,277 112,272 C110,267 107,262 105,258 C103,254 102,249 101,244 C100,239 98,234 97,229 C96,224 96,219 94,215 C92,211 91,206 90,202 C89,198 88,193 87,188 C86,183 87,178 87,173 C87,168 87,163 87,158 C87,153 86,148 87,143 C88,138 89,133 89,128 C89,123 89,118 91,113 C93,108 94,103 96,98 C98,93 100,89 102,84 C104,79 107,75 109,71 C111,67 113,63 116,59 C119,55 122,51 125,48 C128,45 131,42 135,40 C139,38 142,62 138,60"
+                {/* Main India outline */}
+                <path 
+                  d="M174.8,31.5 c-2.4-3.7-1.9-8.6,0.8-11.9c4.2-5.2,12.2-4.9,16.9-0.3c4.4,4.4,5.7,11.6,3.2,17.4c-2.2,5.2-7.5,8.9-13.1,9.2
+                  c-6.5,0.3-12.3-2.7-16.3-7.5c-4.3-5.2-6.2-11.7-6.3-18.6c-0.1-8.3,3.4-16.6,9.7-22c5.5-4.7,13.6-6.2,20.3-3.5
+                  c7.2,2.9,12.5,10.3,13.8,18c1.3,7.9-1.6,16.1-7.1,21.6c-5.9,5.8-15.2,7.4-22.7,3.9c-3.8-1.8-6.9-4.5-9.2-8c-2.5-3.8-3.8-8.3-3.6-13
+                  c0.3-7.3,4.7-14.1,11.2-17.6 c6.9-3.7,15.6-3.3,22.3,0.8 c6.6,4,10.8,11.3,10.9,19c0.1,8.3-4.3,16.4-11.3,20.7
+
+                  M106.7,73.3 c4.7-3.1,7.2-9,6.1-14.6c-1.2-6.3-7.2-11.2-13.8-11.4c-6.7-0.2-13.1,4.2-15.1,10.6c-1.9,5.9,0.1,12.6,4.8,16.7
+                  c4.9,4.2,12.1,5.2,17.9,2.3c7.7-3.8,12.3-12.8,11.1-21.2c-1.2-8.7-8.5-15.9-17.2-17.1c-9-1.3-18.4,4.1-22,12.5c-3.8,8.7-1.1,19.4,6.5,25
+                  c8.3,6.2,20.3,5.5,27.8-1.6c7.9-7.5,9.1-20.3,2.9-29.3c-6.3-9.2-19.1-13-29.3-8.8c-10.3,4.3-17.1,15.8-15.8,26.8c1.3,11,10.5,20.3,21.5,21.7
+
+                  M239.8,49.1c-0.7-6.5-1.3-12.9-2-19.4c5.2-0.4,10.4-0.9,15.6-1.3c2.6,6.9,5.2,13.8,7.8,20.7c6.4,0,12.8,0,19.2-0.1
+                  c-1,6.5-1.9,12.9-2.9,19.4c6.3,1.5,12.6,3,18.9,4.5c0.7,6.8,1.4,13.6,2.1,20.4c6.5,0.3,13,0.6,19.5,0.9c1.3,6.7,2.6,13.4,3.8,20.1
+                  c6.1,1.8,12.2,3.5,18.3,5.3c0.9,6.8,1.7,13.6,2.6,20.3c-2.1,5.8-11.2,24.7-13.2,30.6c-2,5.9-8.4,35.6-10.3,41.6c-1.9,6-3.8,12-5.7,18.1
+                  c-4,3.7-8,7.3-12,11c-4.6,1.6-9.2,3.2-13.8,4.9c-4.7-2.6-9.4-5.1-14.1-7.7c-3.5-5.1-6.9-10.1-10.4-15.2c-1.5-6.7-3-13.3-4.6-20
+                  c-6.7-0.9-13.4-1.8-20.1-2.7c-3-5.4-5.9-10.8-8.9-16.2c-5.8-3.3-11.6-6.5-17.4-9.8c-1.1-6.9-2.3-13.8-3.4-20.7
+                  c-6.3-2.9-12.6-5.7-19-8.6c-0.2-7-0.4-14-0.6-21.1c-5-5-10-10-15-15c-1.1-6.8-2.1-13.7-3.2-20.5c-6.3-3.1-12.6-6.3-18.8-9.4
+                  c-1.2-6.8-2.3-13.6-3.5-20.4c-5.8-4-11.5-8-17.3-12c-0.5-7-1-13.9-1.5-20.9c-4.9-5.4-9.8-10.7-14.8-16.1c0.6-6.9,1.3-13.9,1.9-20.8
+                  c-4.2-5.7-8.4-11.5-12.6-17.2c2.1-6.5,4.3-13,6.4-19.5c-3.5-5.9-7-11.8-10.5-17.7c3.5-6.5,7-13.1,10.6-19.6c-2.8-7.1-5.6-14.2-8.4-21.3
+                  c3.8-5.4,7.5-10.8,11.3-16.2c-1.2-6.7-2.5-13.5-3.7-20.2c5.1-4.3,10.3-8.5,15.4-12.8c0.3-6.9,0.6-13.9,0.8-20.8c5.6-3.9,11.3-7.8,16.9-11.7
+                  c1.9-6.6,3.7-13.3,5.6-19.9c5.8-3.6,11.6-7.2,17.3-10.8c2.7-6.4,5.4-12.8,8.1-19.2c5.9-3.3,11.8-6.6,17.7-9.9c3.5-6.2,6.9-12.3,10.4-18.5
+                  c6-3,12-6,18-9c4.1-5.9,8.3-11.8,12.4-17.7c6-2.7,12-5.4,18-8.1c4.7-5.6,9.4-11.1,14.1-16.7c6-2.4,12-4.7,18-7.1
+                  c5.1-5.3,10.2-10.6,15.3-15.9c6-2,12-4.1,18-6.1c5.6-5,11.1-9.9,16.7-14.9c6-1.7,11.9-3.4,17.9-5.1c5.9-4.7,11.8-9.3,17.8-14
+                  c5.9-1.4,11.9-2.8,17.8-4.2c6.3-4.3,12.5-8.6,18.8-12.9c5.9-1.1,11.8-2.2,17.7-3.3c6.5-4,13-8,19.5-12c5.9-0.8,11.7-1.5,17.6-2.3
+                  c6.8-3.7,13.6-7.4,20.4-11.1c5.8-0.4,11.7-0.9,17.5-1.3c7.1-3.3,14.2-6.7,21.3-10c5.8-0.1,11.6-0.2,17.4-0.3c7.3-3,14.6-6,21.9-9
+                  c5.7,0.2,11.5,0.4,17.2,0.6c7.4-2.7,14.9-5.3,22.3-8c5.7,0.5,11.5,1.1,17.2,1.6c7.6-2.4,15.2-4.7,22.7-7.1c5.7,0.9,11.3,1.7,17,2.6
+                  c7.7-2,15.4-4.1,23.1-6.1c5.6,1.2,11.2,2.4,16.8,3.6c7.8-1.7,15.6-3.4,23.4-5.1c5.6,1.5,11.1,3,16.7,4.6c7.9-1.4,15.8-2.8,23.7-4.2
+                  c5.5,1.9,11,3.7,16.5,5.6c8-1.1,16-2.2,24-3.3c5.5,2.2,10.9,4.4,16.4,6.6c8.1-0.8,16.1-1.5,24.2-2.3c5.4,2.5,10.8,5,16.1,7.5
+                  c8.2-0.4,16.3-0.9,24.5-1.3c5.3,2.9,10.6,5.7,15.9,8.6c8.2-0.1,16.5-0.2,24.7-0.3c5.2,3.2,10.4,6.4,15.6,9.6c8.3,0.2,16.6,0.4,24.9,0.7
+                  c5.1,3.5,10.2,7,15.4,10.5c8.4,0.5,16.7,1,25.1,1.6c5,3.9,10,7.7,15,11.6c8.4,0.9,16.8,1.7,25.2,2.6c4.9,4.2,9.8,8.4,14.7,12.5
+                  c8.5,1.2,16.9,2.4,25.4,3.6c4.8,4.5,9.6,9,14.4,13.5c8.5,1.5,17,3,25.5,4.5c4.6,4.9,9.2,9.7,13.9,14.6c8.5,1.9,17.1,3.7,25.6,5.6
+                  c4.5,5.2,9,10.4,13.4,15.6c8.6,2.2,17.1,4.4,25.7,6.6c4.4,5.5,8.7,11,13.1,16.5c8.6,2.5,17.2,5.1,25.8,7.6c4.2,5.9,8.4,11.7,12.6,17.6
+                  c8.6,2.9,17.3,5.7,25.9,8.6 c4.1,6.2,8.2,12.3,12.2,18.5 c8.7,3.2,17.4,6.4,26,9.6 c3.9,6.5,7.9,13,11.8,19.5
+                  c8.7,3.5,17.4,7.1,26.1,10.6 c3.8,6.9,7.5,13.7,11.3,20.6 c8.7,3.9,17.5,7.8,26.2,11.6 c3.6,7.2,7.2,14.4,10.8,21.6"
+                  
                   stroke="#1A5F7A"
                   strokeWidth="2"
-                  fill="rgba(26, 95, 122, 0.05)"
+                  fill="rgba(26, 95, 122, 0.08)"
                 />
-
-                {/* State borders - simplified */}
+                
+                {/* State borders */}
                 <path
-                  d="M200,100 L220,150 L260,170 L300,160 L330,200 L350,250 L300,300 L250,350 L200,370 L150,350 L130,300 L150,250 L180,200 L150,150 L200,100"
+                  d="M150,120 L200,100 L250,120 L300,100 L320,150 L350,200 L320,250 L250,300 L200,350 L150,320 L100,280 L120,200 L150,120"
                   stroke="#1A5F7A"
                   strokeWidth="0.5"
                   fill="none"
                   strokeDasharray="2,2"
                 />
                 
-                {/* Rivers - simplified */}
+                {/* Major rivers */}
                 <path
                   d="M250,100 C255,120 260,140 270,160 C280,180 290,200 285,220 C280,240 270,260 260,280 C250,300 240,320 230,340 C220,360 210,380 200,400"
                   stroke="#1A5F7A"
@@ -205,14 +216,28 @@ const InteractiveMapSection: React.FC = () => {
                   strokeOpacity="0.3"
                 />
                 
-                {/* Mountains - simplified */}
                 <path
-                  d="M140,80 L150,70 L160,80 L170,70 L180,80 L190,70 L200,80 L210,70 L220,80 L230,70 L240,80 L250,70 L260,80"
+                  d="M150,150 C160,180 170,200 160,220 C150,240 140,260 130,280 C120,300 110,320 100,340"
+                  stroke="#1A5F7A"
+                  strokeWidth="1"
+                  fill="none"
+                  strokeOpacity="0.3"
+                />
+                
+                {/* Northern mountains */}
+                <path
+                  d="M100,80 L110,70 L120,80 L130,70 L140,80 L150,70 L160,80 L170,70 L180,80 L190,70 L200,80 L210,70 L220,80 L230,70 L240,80 L250,70 L260,80 L270,70 L280,80 L290,70 L300,80"
                   stroke="#BE5504"
                   strokeWidth="1"
                   fill="none"
                   strokeOpacity="0.3"
                 />
+                
+                {/* Add a subtle texture to represent terrain */}
+                <pattern id="terrainPattern" patternUnits="userSpaceOnUse" width="10" height="10">
+                  <circle cx="5" cy="5" r="0.5" fill="#1A5F7A" opacity="0.1" />
+                </pattern>
+                <rect width="400" height="480" fill="url(#terrainPattern)" />
               </svg>
 
               {/* City markers */}
@@ -254,9 +279,6 @@ const InteractiveMapSection: React.FC = () => {
                       ${(selectedRegion === region.id || hoveredRegion === region.id) ? 'opacity-100' : 'opacity-80 group-hover:opacity-100'}
                     `}>
                       {region.name}
-                      {region.active && (
-                        <span className="ml-1 text-xs text-secondary">({region.companions})</span>
-                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -303,7 +325,7 @@ const InteractiveMapSection: React.FC = () => {
                   <div className="mb-6 bg-sand/50 rounded-lg p-4">
                     <div className="flex items-center">
                       <Users className="w-5 h-5 text-primary mr-2" />
-                      <span className="font-heading font-medium">{selectedRegionData.companions} Local Companions</span>
+                      <span className="font-heading font-medium">Local Companions Available</span>
                     </div>
                     <p className="text-sm text-foreground-muted mt-2">Ready to show you around and provide authentic local experiences</p>
                   </div>
@@ -319,6 +341,9 @@ const InteractiveMapSection: React.FC = () => {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-4 text-sm italic text-secondary font-medium">
+                    <span className="inline-block animate-pulse">✨</span> Psst... our companions know secret spots you won't find in any guidebook!
+                  </p>
                 </div>
                 
                 {selectedRegionData.active ? (
