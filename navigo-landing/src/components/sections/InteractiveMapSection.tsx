@@ -27,7 +27,7 @@ const serviceRegions = [
   {
     id: "jodhpur",
     name: "Jodhpur",
-    position: { x: 135, y: 190 },
+    position: { x: 230, y: 190 },
     description: "Experience the 'Blue City' with its imposing fort and maze-like streets known only to locals.",
     highlights: ["Mehrangarh Fort", "Clock Tower Market", "Blue City Walk", "Desert Excursions"],
     active: true
@@ -35,7 +35,7 @@ const serviceRegions = [
   {
     id: "mumbai",
     name: "Mumbai",
-    position: { x: 130, y: 270 },
+    position: { x: 230, y: 300 },
     description: "Navigate the bustling streets of India's financial capital with locals who understand its unique rhythm and soul.",
     highlights: ["Gateway of India", "Dharavi", "Local Food Tours", "Bollywood"],
     active: true
@@ -43,7 +43,7 @@ const serviceRegions = [
   {
     id: "goa",
     name: "Goa",
-    position: { x: 120, y: 310 },
+    position: { x: 240, y: 350 },
     description: "Relax on pristine beaches and experience Portuguese influence with companions who know more than just tourist spots.",
     highlights: ["Hidden Beaches", "Old Goa Churches", "Spice Plantations", "Local Cuisine"],
     active: true
@@ -59,7 +59,7 @@ const serviceRegions = [
   {
     id: "bangalore",
     name: "Bangalore",
-    position: { x: 170, y: 335 },
+    position: { x: 330, y: 335 },
     description: "Experience the perfect blend of tradition and technology in India's Silicon Valley with our tech-savvy companions.",
     highlights: ["Cubbon Park", "MG Road", "Local Breweries", "Tech Parks"],
     active: true
@@ -67,7 +67,7 @@ const serviceRegions = [
   {
     id: "chennai",
     name: "Chennai",
-    position: { x: 220, y: 355 },
+    position: { x: 300, y: 460 },
     description: "Discover South Indian culture, arts, and cuisine with companions who bring the city's heritage to life.",
     highlights: ["Marina Beach", "Kapaleeshwarar Temple", "Music Academies", "South Indian Cuisine"],
     active: true
@@ -75,36 +75,15 @@ const serviceRegions = [
   {
     id: "udaipur",
     name: "Udaipur",
-    position: { x: 145, y: 210 },
+    position: { x: 230, y: 210 },
     description: "Experience the romantic 'City of Lakes' with locals who know its royal history and scenic beauty intimately.",
     highlights: ["Lake Pichola", "City Palace", "Vintage Car Museum", "Local Arts"],
     active: true
   },
   // Upcoming locations (not yet active)
-  {
-    id: "kochi",
-    name: "Kochi",
-    position: { x: 160, y: 390 },
-    description: "Coming soon! Explore Kerala's beautiful port city with its unique blend of cultures and beautiful backwaters.",
-    highlights: ["Fort Kochi", "Chinese Fishing Nets", "Backwaters", "Spice Markets"],
-    active: false
-  },
-  {
-    id: "amritsar",
-    name: "Amritsar",
-    position: { x: 145, y: 100 },
-    description: "Coming soon! Visit the spiritual center of Sikhism and experience the unique border culture of this vibrant city.",
-    highlights: ["Golden Temple", "Wagah Border", "Punjabi Cuisine", "Local Traditions"],
-    active: false
-  },
-  {
-    id: "darjeeling",
-    name: "Darjeeling",
-    position: { x: 330, y: 160 },
-    description: "Coming soon! Explore the breathtaking tea gardens and Himalayan views with companions who know every scenic spot.",
-    highlights: ["Tea Gardens", "Himalayan Railway", "Tiger Hill", "Buddhist Monasteries"],
-    active: false
-  }
+ 
+  
+  
 ];
 
 const InteractiveMapSection: React.FC = () => {
@@ -261,8 +240,8 @@ const InteractiveMapSection: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-sm italic text-secondary font-medium">
-                    <span className="inline-block animate-pulse">✨</span> Psst... our companions know secret spots you won't find in any guidebook!
+                  <p className="mt-4 text-sm italic text-yellow-800  font-medium">
+                    <span className="inline-block text-yellow-800 animate-pulse">✨</span> Psst... our companions know secret spots you won't find in any guidebook!
                   </p>
                 </div>
                 
