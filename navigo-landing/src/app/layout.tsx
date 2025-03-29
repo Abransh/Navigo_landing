@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react"
 
 // Load Montserrat font (for headlines and titles)
 const montserrat = Montserrat({ 
@@ -35,6 +36,7 @@ export default function RootLayout({
         className={`${montserrat.variable} ${inter.variable} font-body antialiased bg-sand text-navy`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
