@@ -139,14 +139,14 @@ const InteractiveMapSection: React.FC = () => {
                   />
                 </div>
 
-              {/* City markers */}
+                              {/* City markers */}
               {serviceRegions.map((region) => (
                 <motion.div
                   key={region.id}
                   className={`absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2`}
                   style={{ left: region.position.x, top: region.position.y }}
                   initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.2 }}
+                  whileHover={{ scale: 1.2, zIndex: 20 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => handleRegionClick(region.id)}
                   onMouseEnter={() => setHoveredRegion(region.id)}
@@ -157,12 +157,13 @@ const InteractiveMapSection: React.FC = () => {
                   >
                     {/* Pin design */}
                     <div className={`
-                      w-10 h-10 rounded-full flex items-center justify-center
+                      w-8 h-8 rounded-full flex items-center justify-center
                       ${region.active 
                         ? 'bg-secondary shadow-lg' 
                         : 'bg-gray-300 border border-dashed border-primary'}
+                      ${(selectedRegion === region.id || hoveredRegion === region.id) ? 'z-10' : 'z-0'}
                     `}>
-                      <MapPin className={`w-5 h-5 ${region.active ? 'text-white' : 'text-gray-500'}`} />
+                      <MapPin className={`w-4 h-4 ${region.active ? 'text-white' : 'text-gray-500'}`} />
                       
                       {/* Pulse animation for active cities */}
                       {region.active && (
@@ -170,12 +171,15 @@ const InteractiveMapSection: React.FC = () => {
                       )}
                     </div>
                     
-                    {/* City name label */}
+                    {/* City name label - only show on hover or when selected */}
                     <div className={`
                       absolute top-full left-1/2 transform -translate-x-1/2 mt-1
                       bg-white px-2 py-1 rounded-md shadow-sm whitespace-nowrap
                       ${region.active ? 'text-navy font-medium' : 'text-gray-500'}
-                      ${(selectedRegion === region.id || hoveredRegion === region.id) ? 'opacity-100' : 'opacity-80 group-hover:opacity-100'}
+                      transition-all duration-200
+                      ${(selectedRegion === region.id || hoveredRegion === region.id) 
+                        ? 'opacity-100 scale-100 z-20' 
+                        : 'opacity-0 scale-95 pointer-events-none'}
                     `}>
                       {region.name}
                     </div>
@@ -201,7 +205,7 @@ const InteractiveMapSection: React.FC = () => {
             {/* Info text */}
             <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-lg shadow-sm border border-border max-w-xs text-xs flex items-start">
               <Info className="w-4 h-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
-              <p className="text-foreground-muted">Click on any location to learn more about our services in that area. Numbers in parentheses show available companions.</p>
+              <p className="text-foreground-muted">Hover over a location to see details about our services in that area.</p>
             </div>
           </div>
 
@@ -240,8 +244,8 @@ const InteractiveMapSection: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-sm italic text-yellow-800  font-medium">
-                    <span className="inline-block text-yellow-800 animate-pulse">✨</span> Psst... our companions know secret spots you won't find in any guidebook!
+                  <p className="mt-4 text-sm italic text-secondary font-medium">
+                    <span className="inline-block animate-pulse">✨</span> Psst... our companions know secret spots you won't find in any guidebook!
                   </p>
                 </div>
                 
