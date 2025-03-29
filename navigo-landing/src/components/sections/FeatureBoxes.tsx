@@ -27,7 +27,7 @@ const FeatureBoxes: React.FC = () => {
         description:
           "Travel with confidence knowing you're accompanied by a verified local companion. We prioritize safety with thorough background checks, real-time location sharing, and specialized support for solo female travelers.",
         icon: Shield,
-        leftImage: "/images/indian-pattern-vertical.svg",
+        leftImage: "/images/QrBarBoxes.png",
         rightImage: "/images/featuresbox1.jpg",
       },
       {
@@ -35,7 +35,7 @@ const FeatureBoxes: React.FC = () => {
         description:
           "Stop paying tourist prices! Our local companions help you access fair, local rates for everything from street food to souvenirs. They'll negotiate on your behalf and steer you away from overpriced tourist traps.",
         icon: Users,
-        leftImage: "/images/indian-pattern-vertical.svg",
+        leftImage: "/images/QrBarBoxes.png",
         rightImage: "/images/featuresbox2.jpg",
       },
       {
@@ -43,7 +43,7 @@ const FeatureBoxes: React.FC = () => {
         description:
           "Break through language barriers with our bilingual companions. They'll help translate conversations, read menus, negotiate with vendors, and ensure you're always understood wherever you go.",
         icon: Languages,
-        leftImage: "/images/indian-pattern-vertical.svg",
+        leftImage: "/images/QrBarBoxes.png",
         rightImage: "/images/Featuresbox3.jpg",
       },
       {
@@ -51,7 +51,7 @@ const FeatureBoxes: React.FC = () => {
         description:
           "Discover hidden gems and experience destinations like a true local. Our companions share insider knowledge, family traditions, and off-the-beaten-path locations that you'd never find in guidebooks.",
         icon: MapPin,
-        leftImage: "/images/indian-pattern-vertical.svg",
+        leftImage: "/images/QrBarBoxes.png",
         rightImage: "/images/feature-image-4-right.jpg",
       },
     ],
