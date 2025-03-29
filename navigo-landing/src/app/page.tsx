@@ -4,6 +4,7 @@ import FeatureBoxes from '@/components/sections/FeatureBoxes';
 import HowItWorksSection from '@/components/sections/HowItWorksSection';
 import JourneyTransformationSection from '@/components/sections/JourneyTransformationSection';
 import CoreValuesSection from '@/components/sections/CoreValuesSection';
+import InteractiveMapSection from '@/components/sections/InteractiveMapSection';
 import FAQSection from '@/components/sections/FAQSection';
 import Footer from '@/components/layout/Footer';
 
@@ -80,6 +81,20 @@ export default function Home() {
               fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
             <circle cx="40" cy="20" r="4" fill="none" stroke="#BE5504" strokeWidth="1" opacity="0.3" />
             <circle cx="40" cy="20" r="2" fill="#FF9933" opacity="0.4" />
+          </svg>
+        </div>
+      </div>
+      
+      <InteractiveMapSection />
+      
+      {/* Decorative wave pattern */}
+      <div className="bg-white py-6">
+        <div className="max-w-7xl mx-auto px-4">
+          <svg viewBox="0 0 1200 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,20 C50,40 100,0 150,20 C200,40 250,0 300,20 C350,40 400,0 450,20 C500,40 550,0 600,20 C650,40 700,0 750,20 C800,40 850,0 900,20 C950,40 1000,0 1050,20 C1100,40 1150,0 1200,20" 
+              fill="none" stroke="#FF9933" strokeWidth="1" opacity="0.3" />
+            <path d="M0,20 C50,0 100,40 150,20 C200,0 250,40 300,20 C350,0 400,40 450,20 C500,0 550,40 600,20 C650,0 700,40 750,20 C800,0 850,40 900,20 C950,0 1000,40 1050,20 C1100,0 1150,40 1200,20" 
+              fill="none" stroke="#1A5F7A" strokeWidth="1" opacity="0.3" />
           </svg>
         </div>
       </div>
