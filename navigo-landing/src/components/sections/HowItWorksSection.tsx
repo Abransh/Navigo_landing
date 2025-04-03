@@ -91,6 +91,7 @@ export default function HowItWorksSection() {
     if (isInView) {
       controls.start("visible");
     }
+    
   }, [isInView, controls]);
 
   const steps = [
@@ -226,7 +227,7 @@ export default function HowItWorksSection() {
             Ready to experience India like a local?
           </p>
           <button className="bg-secondary hover:bg-secondary-dark text-white px-8 py-3.5 rounded-lg font-heading font-semibold transition-colors shadow-lg">
-            Join Our Waitlist
+            Try Navigo!
           </button>
         </motion.div>
       </div>

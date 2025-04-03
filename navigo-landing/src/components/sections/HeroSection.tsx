@@ -82,7 +82,7 @@ export default function EnhancedHeroSection() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Get Early Access
+                Try Out Navigo
                 <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </motion.button>
               
@@ -228,6 +228,8 @@ export default function EnhancedHeroSection() {
                 </div>
                 <span className="text-sm font-medium text-[#0A2342]">500+ travelers matched</span>
               </motion.div>
+
+              
 
               {/* Decorative element inspired by Indian motifs */}
               <div className="absolute -right-8 top-1/3 z-0 opacity-20">

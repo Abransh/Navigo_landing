@@ -1,0 +1,160 @@
+/* src/app/contact/contact.module.css */
+
+.contactFormSection {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 5rem 0;
+  }
+  
+  .formContainer {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    position: relative;
+  }
+  
+  .formField {
+    margin-bottom: 1.5rem;
+  }
+  
+  .formLabel {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--color-navy);
+  }
+  
+  .formInput, 
+  .formTextarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .formInput:focus,
+  .formTextarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(26, 95, 122, 0.1);
+  }
+  
+  .formTextarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .submitButton {
+    background-color: var(--color-secondary);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .submitButton:hover {
+    background-color: var(--color-secondary-dark);
+    transform: translateY(-1px);
+  }
+  
+  .submitButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .iconInput {
+    position: relative;
+  }
+  
+  .inputIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+    pointer-events: none;
+  }
+  
+  .iconInput input {
+    padding-left: 2.5rem;
+  }
+  
+  .bgPattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    pointer-events: none;
+    background-image: url('/images/indian-pattern.svg');
+    background-repeat: repeat;
+    background-size: 300px;
+  }
+  
+  .successMessage {
+    background-color: rgba(0, 200, 83, 0.1);
+    border: 1px solid rgba(0, 200, 83, 0.2);
+    color: rgb(0, 128, 55);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .errorMessage {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    color: rgb(200, 30, 30);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .infoCard {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  
+  .infoIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-right: 1rem;
+  }
+  
+  /* Animation container */
+  .animationWrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .contactFormSection {
+      padding: 3rem 0;
+    }
+    
+    .formContainer {
+      padding: 1.5rem;
+    }
+  }

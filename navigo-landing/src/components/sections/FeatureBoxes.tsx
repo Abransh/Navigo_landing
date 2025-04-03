@@ -155,7 +155,7 @@ const FeatureBoxes: React.FC = () => {
                     src={feature.leftImage || "/placeholder.svg"}
                     alt=""
                     fill
-                    className="object-cover opacity-30"
+                    className="object-cover opacity-50"
                     aria-hidden="true"
                     sizes="100px"
                   />
@@ -198,11 +198,11 @@ const FeatureBoxes: React.FC = () => {
       </div>
       
       {/* Call to action */}
-      <div className="text-center mt-10">
+      {/* <div className="text-center mt-10">
         <button className="bg-secondary hover:bg-secondary-dark text-white px-8 py-3 rounded-lg font-heading font-semibold transition-colors shadow-lg">
           Experience the Difference
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };

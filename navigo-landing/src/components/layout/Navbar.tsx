@@ -1,11 +1,14 @@
 "use client"; 
-
+import { useState, useEffect } from 'react';
 import React from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const [activeSection, setActiveSection] = useState('hero');
+const [scrollPosition, setScrollPosition] = useState(0);
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm">
