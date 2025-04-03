@@ -61,27 +61,38 @@ export function preloadImages(urls: string[]): Promise<void[]> {
 /**
  * Loads all required 3D dependencies for the animation
  */
-export async function load3DAnimationDependencies(): Promise<void> {
+export async function load3DAnimationDependencies() {
+  const scripts = [
+    'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js',
+    'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.min.js'
+  ];
+
+  const loadScript = (src: string) => {
+    return new Promise<void>((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) {
+        resolve();
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => {
+        console.warn(`Failed to load script: ${src}`);
+        resolve(); // Resolve instead of reject to continue execution
+      };
+      document.head.appendChild(script);
+    });
+  };
+
   try {
-    // Load Three.js and GSAP libraries in the correct order
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js');
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js');
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js');
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/DrawSVGPlugin.min.js');
-    await loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.min.js');
-    
-    // Preload images used in the animation
-    await preloadImages([
-      'https://assets.codepen.io/557388/background-reduced.jpg',
-      'https://assets.codepen.io/557388/clouds.png',
-      'https://assets.codepen.io/557388/sunset-reduced.jpg'
-    ]);
-    
-    console.log('All 3D animation dependencies loaded');
-    return Promise.resolve();
+    await Promise.all(scripts.map(loadScript));
   } catch (error) {
-    console.error('Failed to load 3D animation dependencies:', error);
-    return Promise.reject(error);
+    console.error('Error loading animation dependencies:', error);
+    throw error;
   }
 }
 
