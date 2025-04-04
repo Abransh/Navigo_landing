@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ChevronRight, MapPin, Shield, Languages, Star, Users } from 'lucide-react';
 
@@ -77,22 +78,26 @@ export default function EnhancedHeroSection() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <motion.button 
-                className="bg-[#FF9933] hover:bg-[#e88929] text-[#FFF8EA] px-6 py-3.5 rounded-lg font-medium transition-colors shadow-lg flex items-center justify-center group"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Try Out Navigo
-                <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </motion.button>
+              <Link href="/try-navigo">
+                <motion.button 
+                  className="bg-[#FF9933] hover:bg-[#e88929] text-[#FFF8EA] px-6 py-3.5 rounded-lg font-medium transition-colors shadow-lg flex items-center justify-center group w-full sm:w-auto"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Try Out Navigo
+                  <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </motion.button>
+              </Link>
               
-              <motion.button 
-                className="bg-[#BE5504]/10 hover:bg-[#BE5504]/20 border border-[#BE5504]/30 text-[#FFF8EA] px-6 py-3.5 rounded-lg font-medium transition-colors flex items-center justify-center"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Learn How It Works
-              </motion.button>
+              <Link href="#how-it-works">
+                <motion.button 
+                  className="bg-[#BE5504]/10 hover:bg-[#BE5504]/20 border border-[#BE5504]/30 text-[#FFF8EA] px-6 py-3.5 rounded-lg font-medium transition-colors flex items-center justify-center w-full sm:w-auto"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Learn How It Works
+                </motion.button>
+              </Link>
             </div>
           </motion.div>
           

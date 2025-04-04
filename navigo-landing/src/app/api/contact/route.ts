@@ -1,46 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
+export async function POST(req: Request) {
   try {
-    // Get the form data from the request
-    const formData = await request.json();
+    const body = await req.json();
+    const { name, email, phone, destination, travelDates, interests } = body;
     
-    // Validate the form data (basic validation)
-    if (!formData.name || !formData.email) {
+    // Validate required fields
+    if (!name || !email) {
       return NextResponse.json(
-        { error: 'Name and email are required' },
+        { error: 'Name and email are required fields' },
         { status: 400 }
       );
     }
     
     // Here you would typically:
-    // 1. Save the form data to a database
+    // 1. Save the data to a database
     // 2. Send an email notification
-    // 3. Add the user to a newsletter/waitlist
+    // 3. Add the subscriber to a CRM or mailing list
     
-    // For now, we'll just simulate a successful response
-    // In a real implementation, you would integrate with your backend services
+    console.log('Form submission received:', {
+      name,
+      email,
+      phone,
+      destination,
+      travelDates,
+      interests
+    });
     
-    // Simulate processing time
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // For now, we'll just return a success response
+    return NextResponse.json({ 
+      message: 'Form submitted successfully',
+      data: { name, email, phone, destination, travelDates, interests }
+    });
     
-    // Return a success response
-    return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Form submission received successfully' 
-      },
-      { status: 200 }
-    );
   } catch (error) {
-    console.error('Error processing contact form:', error);
-    
-    // Return an error response
+    console.error('Error processing form submission:', error);
     return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Failed to process your request. Please try again.' 
-      },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
