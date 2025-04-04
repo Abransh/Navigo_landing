@@ -1,25 +1,14 @@
 // src/app/contact/page.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import MobileAnimation from '@/components/MobileSections/MobileAnimation';
-import AnimationLoader from '@/components/AnimationLoader';
 import { motion } from 'framer-motion';
 import { ChevronRight, Mail, Phone, User } from 'lucide-react';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import styles from './contact.module.css';
-import './animation.css';
-import { useMobile } from '@/hooks/use-mobile';
-import { load3DAnimationDependencies } from '@/lib/animation-utils';
-
-// Dynamically import the animation script component
-const AnimationScript = dynamic(() => import('@/components/AnimationScript'), {
-  ssr: false,
-  loading: () => <AnimationLoader />
-});
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -31,43 +20,7 @@ export default function ContactPage() {
   
   const [formStatus, setFormStatus] = useState<null | 'success' | 'error'>(null);
   const [loading, setLoading] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  
-  const isMobile = useMobile();
-  const [animationLoaded, setAnimationLoaded] = useState(false);
-  
-  // Handle animation initialization after the component mounts
-  useEffect(() => {
-    setMounted(true);
-    
-    // Only load the 3D animation on desktop devices
-    if (!isMobile) {
-      const loadAnimation = async () => {
-        try {
-          await load3DAnimationDependencies();
-          setAnimationLoaded(true);
-        } catch (error) {
-          console.error('Failed to load animation:', error);
-        }
-      };
-      
-      loadAnimation();
-    }
-    
-    return () => {
-      // Cleanup any global GSAP animations when component unmounts
-      if (typeof window !== 'undefined' && window.gsap) {
-        // Kill all GSAP animations and ScrollTriggers
-        const timeline = window.gsap.timeline();
-        timeline.clear();
-        
-        if (window.gsap.scrollTrigger) {
-          const triggers = window.gsap.scrollTrigger.getAll();
-          triggers.forEach(trigger => trigger.kill());
-        }
-      }
-    };
-  }, [isMobile]);
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -79,7 +32,6 @@ export default function ContactPage() {
     setLoading(true);
     
     try {
-      // Submit form data to our API route
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -91,7 +43,6 @@ export default function ContactPage() {
       const data = await response.json();
       
       if (response.ok) {
-        // Success handling
         setFormStatus('success');
         setFormData({
           name: '',
@@ -100,18 +51,14 @@ export default function ContactPage() {
           message: ''
         });
       } else {
-        // Error handling
         console.error('Form submission error:', data.error);
         setFormStatus('error');
       }
     } catch (error) {
-      // Network or other error handling
       console.error('Form submission failed:', error);
       setFormStatus('error');
     } finally {
       setLoading(false);
-      
-      // Reset status after 5 seconds
       setTimeout(() => {
         setFormStatus(null);
       }, 5000);
@@ -330,91 +277,8 @@ export default function ContactPage() {
             </svg>
           </div>
         </section>
-        
-        {/* Animation Section - Conditionally render based on device */}
-        {mounted && (
-          isMobile ? (
-          <MobileAnimation />
-        ) : (
-          <div className="animation-container">
-            <div className="content">
-              <div className="loading">
-                <AnimationLoader />
-              </div>
-              <div className="trigger"></div>
-              <div className="section">
-                <h1>Your India Journey.</h1>
-                <h3>The adventure begins here.</h3>
-                <p>Discover the real India with a local companion.</p>
-                <div className="scroll-cta">Scroll</div>
-              </div>
-              
-              <div className="section right">
-                <h2>It's not just a trip...</h2>
-              </div>
-              
-              <div className="ground-container">
-                <div className="parallax ground"></div>
-                <div className="section right">
-                  <h2>..it's a cultural immersion.</h2>
-                  <p>Beyond tourist attractions.</p>
-                </div>
-
-                <div className="section">
-                  <h2>Navigate with confidence.</h2>
-                  <p>No language barriers. No tourist traps.</p>
-                </div>
-                
-                <div className="section right">
-                  <h2>Experience authentic India.</h2>
-                  <p>Through local eyes!</p>
-                </div>
-                <div className="parallax clouds"></div>
-              </div>
-              
-              <div className="blueprint">
-                <svg width="100%" height="100%" viewBox="0 0 100 100">
-                  <line id="line-length" x1="10" y1="80" x2="90" y2="80" strokeWidth="0.5"></line>
-                  <path id="line-wingspan" d="M10 50, L40 35, M60 35 L90 50" strokeWidth="0.5"></path>
-                  <circle id="circle-phalange" cx="60" cy="60" r="15" fill="transparent" strokeWidth="0.5"></circle>
-                </svg>
-                <div className="section dark ">
-                  <h2>The Navigo Difference.</h2>
-                  <p>What makes our service special...</p>
-                </div>
-                <div className="section dark length">
-                  <h2>Safety.</h2>
-                  <p>Verified companions ensure your security.</p>
-                </div>
-                <div className="section dark wingspan">
-                  <h2>Local Knowledge.</h2>
-                  <p>Insights you won't find in any guidebook.</p>
-                </div>
-                <div className="section dark phalange">
-                  <h2>Cultural Connection</h2>
-                  <p>Form meaningful relationships that last.</p>
-                </div>
-                <div className="section dark">
-                  <h2>Authenticity</h2>
-                  <p>Experience the real India that tourists rarely see.</p>
-                </div>
-              </div>
-              <div className="sunset">
-                <div className="section"></div>
-                <div className="section end">
-                  <h2>Ready to start your journey?</h2>
-                  <a href="#contact-form" className="navigo-cta">Connect with Navigo</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          )
-        )}
                 
         <Footer />
-
-        {/* Animation Scripts - Load scripts only on desktop */}
-        {mounted && !isMobile && <AnimationScript />}
       </main>
     </>
   );
