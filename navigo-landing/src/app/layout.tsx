@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react"
+import React from 'react';
 
 // Load Montserrat font (for headlines and titles)
 const montserrat = Montserrat({ 

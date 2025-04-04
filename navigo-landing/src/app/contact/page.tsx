@@ -63,7 +63,7 @@ export default function ContactPage() {
         
         if (window.gsap.scrollTrigger) {
           const triggers = window.gsap.scrollTrigger.getAll();
-          triggers.forEach((trigger: any) => trigger.kill());
+          triggers.forEach(trigger => trigger.kill());
         }
       }
     };
@@ -334,80 +334,80 @@ export default function ContactPage() {
         {/* Animation Section - Conditionally render based on device */}
         {mounted && (
           isMobile ? (
-            <MobileAnimation />
-          ) : (
-            <div className="animation-container">
-              <div className="content">
-                <div className="loading">
-                  <AnimationLoader />
+          <MobileAnimation />
+        ) : (
+          <div className="animation-container">
+            <div className="content">
+              <div className="loading">
+                <AnimationLoader />
+              </div>
+              <div className="trigger"></div>
+              <div className="section">
+                <h1>Your India Journey.</h1>
+                <h3>The adventure begins here.</h3>
+                <p>Discover the real India with a local companion.</p>
+                <div className="scroll-cta">Scroll</div>
+              </div>
+              
+              <div className="section right">
+                <h2>It's not just a trip...</h2>
+              </div>
+              
+              <div className="ground-container">
+                <div className="parallax ground"></div>
+                <div className="section right">
+                  <h2>..it's a cultural immersion.</h2>
+                  <p>Beyond tourist attractions.</p>
                 </div>
-                <div className="trigger"></div>
+
                 <div className="section">
-                  <h1>Your India Journey.</h1>
-                  <h3>The adventure begins here.</h3>
-                  <p>Discover the real India with a local companion.</p>
-                  <div className="scroll-cta">Scroll</div>
+                  <h2>Navigate with confidence.</h2>
+                  <p>No language barriers. No tourist traps.</p>
                 </div>
                 
                 <div className="section right">
-                  <h2>It's not just a trip...</h2>
+                  <h2>Experience authentic India.</h2>
+                  <p>Through local eyes!</p>
                 </div>
-                
-                <div className="ground-container">
-                  <div className="parallax ground"></div>
-                  <div className="section right">
-                    <h2>..it's a cultural immersion.</h2>
-                    <p>Beyond tourist attractions.</p>
-                  </div>
-
-                  <div className="section">
-                    <h2>Navigate with confidence.</h2>
-                    <p>No language barriers. No tourist traps.</p>
-                  </div>
-                  
-                  <div className="section right">
-                    <h2>Experience authentic India.</h2>
-                    <p>Through local eyes!</p>
-                  </div>
-                  <div className="parallax clouds"></div>
+                <div className="parallax clouds"></div>
+              </div>
+              
+              <div className="blueprint">
+                <svg width="100%" height="100%" viewBox="0 0 100 100">
+                  <line id="line-length" x1="10" y1="80" x2="90" y2="80" strokeWidth="0.5"></line>
+                  <path id="line-wingspan" d="M10 50, L40 35, M60 35 L90 50" strokeWidth="0.5"></path>
+                  <circle id="circle-phalange" cx="60" cy="60" r="15" fill="transparent" strokeWidth="0.5"></circle>
+                </svg>
+                <div className="section dark ">
+                  <h2>The Navigo Difference.</h2>
+                  <p>What makes our service special...</p>
                 </div>
-                
-                <div className="blueprint">
-                  <svg width="100%" height="100%" viewBox="0 0 100 100">
-                    <line id="line-length" x1="10" y1="80" x2="90" y2="80" strokeWidth="0.5"></line>
-                    <path id="line-wingspan" d="M10 50, L40 35, M60 35 L90 50" strokeWidth="0.5"></path>
-                    <circle id="circle-phalange" cx="60" cy="60" r="15" fill="transparent" strokeWidth="0.5"></circle>
-                  </svg>
-                  <div className="section dark ">
-                    <h2>The Navigo Difference.</h2>
-                    <p>What makes our service special...</p>
-                  </div>
-                  <div className="section dark length">
-                    <h2>Safety.</h2>
-                    <p>Verified companions ensure your security.</p>
-                  </div>
-                  <div className="section dark wingspan">
-                    <h2>Local Knowledge.</h2>
-                    <p>Insights you won't find in any guidebook.</p>
-                  </div>
-                  <div className="section dark phalange">
-                    <h2>Cultural Connection</h2>
-                    <p>Form meaningful relationships that last.</p>
-                  </div>
-                  <div className="section dark">
-                    <h2>Authenticity</h2>
-                    <p>Experience the real India that tourists rarely see.</p>
-                  </div>
+                <div className="section dark length">
+                  <h2>Safety.</h2>
+                  <p>Verified companions ensure your security.</p>
                 </div>
-                <div className="sunset">
-                  <div className="section"></div>
-                  <div className="section end">
-                    <h2>Ready to start your journey?</h2>
-                    <a href="#contact-form" className="navigo-cta">Connect with Navigo</a>
-                  </div>
+                <div className="section dark wingspan">
+                  <h2>Local Knowledge.</h2>
+                  <p>Insights you won't find in any guidebook.</p>
+                </div>
+                <div className="section dark phalange">
+                  <h2>Cultural Connection</h2>
+                  <p>Form meaningful relationships that last.</p>
+                </div>
+                <div className="section dark">
+                  <h2>Authenticity</h2>
+                  <p>Experience the real India that tourists rarely see.</p>
+                </div>
+              </div>
+              <div className="sunset">
+                <div className="section"></div>
+                <div className="section end">
+                  <h2>Ready to start your journey?</h2>
+                  <a href="#contact-form" className="navigo-cta">Connect with Navigo</a>
                 </div>
               </div>
             </div>
+          </div>
           )
         )}
                 

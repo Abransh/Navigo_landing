@@ -6,7 +6,9 @@ import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import globals from 'globals';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import importPlugin from 'eslint-plugin-import';
+import tailwindPlugin from 'eslint-plugin-tailwindcss';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,6 +21,15 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      '@next/next': nextPlugin,
+      '@typescript-eslint': typescriptPlugin,
+      'react': reactPlugin,
+      'react-hooks': reactHooksPlugin,
+      'jsx-a11y': jsxA11yPlugin,
+      'import': importPlugin,
+      'tailwindcss': tailwindPlugin,
+    },
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
@@ -28,26 +39,36 @@ const eslintConfig = [
           jsx: true,
         },
       },
-      globals: {
-        ...globals.browser,
-        ...globals.es2021,
-      },
-    },
-    plugins: {
-      '@typescript-eslint': typescriptPlugin,
-      'react': reactPlugin,
-      'react-hooks': reactHooksPlugin,
-      '@next/next': nextPlugin,
     },
     rules: {
-      ...typescriptPlugin.configs.recommended.rules,
-      ...reactPlugin.configs.recommended.rules,
-      ...reactHooksPlugin.configs.recommended.rules,
-      ...nextPlugin.configs.recommended.rules,
+      // Next.js specific rules
+      '@next/next/no-html-link-for-pages': 'error',
+      '@next/next/no-img-element': 'warn',
+      
+      // TypeScript rules
+      '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-explicit-any': 'off',
-      'react/no-unescaped-entities': 'off',
-      '@next/next/no-page-custom-font': 'off',
-      "@typescript-eslint/no-unused-vars": "off"
+      
+      // React rules
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      
+      // Accessibility rules
+      'jsx-a11y/alt-text': 'warn',
+      'jsx-a11y/anchor-is-valid': 'warn',
+      
+      // Import rules
+      'import/order': ['warn', {
+        'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always',
+        'alphabetize': { 'order': 'asc' }
+      }],
+      
+      // Tailwind rules
+      'tailwindcss/classnames-order': 'warn',
+      'tailwindcss/no-custom-classname': 'warn',
     }
   }
 ];

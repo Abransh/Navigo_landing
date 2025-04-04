@@ -7,6 +7,7 @@ import CoreValuesSection from '@/components/sections/CoreValuesSection';
 import InteractiveMapSection from '@/components/sections/InteractiveMapSection';
 import FAQSection from '@/components/sections/FAQSection';
 import Footer from '@/components/layout/Footer';
+import React from 'react';
 
 export default function Home() {
   return (
