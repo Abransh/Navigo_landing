@@ -6,6 +6,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Mail, Phone, User, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function TryNavigoPage() {
   const [formData, setFormData] = useState({
@@ -64,19 +65,30 @@ export default function TryNavigoPage() {
       <main className="min-h-screen bg-white">
         <Navbar />
         
-        {/* Simple Hero with Form */}
-        <section className="py-12 bg-[#BE5504]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero Section with Background Image */}
+        <section className="relative py-16 md:py-24">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <Image 
+              src="/images/HeroSectionImage.jpg" 
+              alt="Navigo Travel Experience" 
+              fill 
+              className="object-cover w-full h-full brightness-50"
+              priority
+            />
+          </div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-white mb-4">
-                Try Navigo
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-md">
+                Travel with Navigo
               </h1>
-              <p className="text-xl text-white/90">
-                Enter your contact information to get started
+              <p className="text-xl text-white mb-8 drop-shadow-md max-w-xl mx-auto">
+                Connect with trusted local companions who make your journey authentic and safe
               </p>
             </div>
             
-            <div className="bg-white rounded-lg shadow-sm p-6 max-w-md mx-auto">
+            <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-lg shadow-xl p-8 max-w-md mx-auto">
               {formStatus === 'success' && (
                 <div className="bg-green-50 text-green-800 p-3 rounded-md mb-4">
                   Thanks! We'll contact you shortly.
@@ -88,6 +100,8 @@ export default function TryNavigoPage() {
                   Something went wrong. Please try again.
                 </div>
               )}
+              
+              <h2 className="text-xl font-bold text-gray-900 mb-4 text-center">Get Started Today</h2>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -105,7 +119,7 @@ export default function TryNavigoPage() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
+                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
                       placeholder="Your name"
                     />
                   </div>
@@ -126,7 +140,7 @@ export default function TryNavigoPage() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
+                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -146,7 +160,7 @@ export default function TryNavigoPage() {
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
+                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
                       placeholder="+91 123 456 7890"
                     />
                   </div>
@@ -156,7 +170,7 @@ export default function TryNavigoPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md text-white bg-[#BE5504] hover:bg-[#A64A03]"
+                    className="w-full flex justify-center items-center px-4 py-3 border border-transparent rounded-md text-white bg-[#BE5504] hover:bg-[#A64A03] transition-all duration-300 hover:scale-110 transform shadow-md hover:shadow-lg"
                   >
                     {loading ? (
                       <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -165,7 +179,7 @@ export default function TryNavigoPage() {
                       </svg>
                     ) : (
                       <>
-                        Submit
+                        Get Started Now
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </>
                     )}
