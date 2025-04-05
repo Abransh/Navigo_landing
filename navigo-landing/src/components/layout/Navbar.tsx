@@ -16,13 +16,13 @@ const [scrollPosition, setScrollPosition] = useState(0);
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center align-left">
+            <Link href="/" className="flex items-center ml-1">
               <Image 
                 src="/images/logofullwithicon.svg" 
                 alt="Navigo" 
                 width={280} 
-                height={90} 
-                className="h-22 w-22" 
+                height={200} 
+                className="h-40 w-40" 
                 priority
               />
             </Link>
