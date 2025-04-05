@@ -10,7 +10,8 @@ app = FastAPI(title="User Registration API")
 try:
     client = MongoClient("mongodb://localhost:27017/")
     db = client["Navigo"]
-    collection = db["Waitlist"]
+    waitlistCollection = db["Waitlist"]
+    feedbackCollection = db["Feedback"]
     # Verify connection
     client.admin.command('ping')
     print("Connected to MongoDB successfully!")
@@ -29,15 +30,40 @@ async def register_user(
     
     # Insert into MongoDB
     try:
-        result = collection.insert_one(user_data)
+        result = waitlistCollection.insert_one(user_data)
         return {
             "status": "success",
             "message": "User registered successfully",
             "id": str(result.inserted_id),
-            "collection": collection.name
+            "collection": waitlistCollection.name
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to register user: {str(e)}")
+
+
+
+@app.post("/feedback")
+async def submit_feedback(
+    NAME: str = Query(..., description="User's name"),
+    EMAIL : str = Query(..., description="User's email address"),
+    SUBJECT: str = Query(..., description="Feedback subject"),
+    MESSAGE: str = Query(..., description="Feedback message")
+):
+    """Submit feedback from a user"""
+    # Create feedback data dictionary
+    feedback_data = {"MESSAGE": MESSAGE, "NAME": NAME, "EMAIL": EMAIL, "SUBJECT": SUBJECT}
+    
+    # Insert into MongoDB
+    try:
+        result = feedbackCollection.insert_one(feedback_data)
+        return {
+            "status": "success",
+            "message": "Feedback submitted successfully",
+            "id": str(result.inserted_id),
+            "collection": feedbackCollection.name
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to submit feedback: {str(e)}")
 
 # For local development
 if __name__ == "__main__":
