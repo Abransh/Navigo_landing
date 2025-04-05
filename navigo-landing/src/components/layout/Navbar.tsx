@@ -22,7 +22,7 @@ const [scrollPosition, setScrollPosition] = useState(0);
                 alt="Navigo" 
                 width={280} 
                 height={200} 
-                className="h-40 w-40" 
+                className="h-60 w-60" 
                 priority
               />
             </Link>
