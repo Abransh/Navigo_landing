@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Info, Users } from 'lucide-react';
 import SectionTitle from '@/components/ui/SectionTitle';
+import Link from 'next/link';
 
 // Data for service regions
 const serviceRegions = [
@@ -287,8 +288,8 @@ const InteractiveMapDesktop: React.FC = () => {
                 
                 {selectedRegionData.active ? (
                   <motion.button 
-                    className="mt-8 w-full bg-black hover:bg-black/90 text-white py-3 rounded-lg transition-colors font-medium"
-                    whileHover={{ scale: 1.02 }}
+                    className="mt-8 w-full bg-black hover:bg-gray-800 text-white py-3 rounded-lg transition-all duration-300 font-medium hover:scale-105 transform shadow-md hover:shadow-lg"
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     Find a Companion in {selectedRegionData.name}
@@ -361,13 +362,15 @@ const InteractiveMapDesktop: React.FC = () => {
           <p className="text-foreground-muted mb-6">
             Planning to visit a location not on our map? Let us know and we'll try to connect you with a companion!
           </p>
-          <motion.button 
-            className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg transition-colors shadow-md font-medium"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Request a New Location
-          </motion.button>
+          <Link href="/request-location">
+            <motion.button 
+              className="bg-primary hover:bg-[#A64A03] text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-medium hover:scale-110 transform"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Request a New Location
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>

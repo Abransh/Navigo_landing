@@ -17,7 +17,7 @@ export default function EnhancedHeroSection() {
     <section className="relative overflow-hidden bg-[#1A5F7A]">
       {/* Background pattern - inspired by Indian rangoli patterns */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/indian-pattern.svg')] bg-repeat bg-contain" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/indian-map.svg')] bg-repeat bg-contain" />
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
@@ -129,7 +129,7 @@ export default function EnhancedHeroSection() {
                   <div className="absolute top-6 left-6 right-6 bottom-40 bg-[#FFF8EA] rounded-xl overflow-hidden z-0">
                     <div className="absolute inset-0 opacity-30">
                       <Image 
-                        src="/images/india-map.jpg" 
+                        src="/images/indian-map.svg" 
                         alt="Map of India" 
                         fill 
                         className="object-cover"

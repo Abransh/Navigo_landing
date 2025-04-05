@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
@@ -15,9 +16,15 @@ const [scrollPosition, setScrollPosition] = useState(0);
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-primary">
-              navigo
-              <span className="text-secondary">.</span>
+            <Link href="/" className="flex items-center align-left">
+              <Image 
+                src="/images/logofullwithicon.svg" 
+                alt="Navigo" 
+                width={280} 
+                height={90} 
+                className="h-22 w-22" 
+                priority
+              />
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-8">
@@ -33,7 +40,10 @@ const [scrollPosition, setScrollPosition] = useState(0);
             <Link href="#faq" className="text-gray-700 hover:text-primary font-medium">
               FAQ
             </Link>
-            <Link href="/try-navigo" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
+            <Link href="/contact" className="text-gray-700 hover:text-primary font-medium">
+              Contact Us
+            </Link>
+            <Link href="/try-navigo" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-[#A64A03] transition-all duration-300 hover:scale-110 transform shadow-md hover:shadow-lg">
               Try Navigo
             </Link>
           </div>
@@ -80,8 +90,15 @@ const [scrollPosition, setScrollPosition] = useState(0);
                 FAQ
               </Link>
               <Link 
+                href="/contact" 
+                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact Us
+              </Link>
+              <Link 
                 href="/try-navigo" 
-                className="block mt-2 w-full bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors text-center"
+                className="block mt-2 w-full bg-primary text-white px-4 py-2 rounded-lg hover:bg-[#A64A03] transition-all duration-300 hover:scale-110 transform shadow-md hover:shadow-lg text-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Try Navigo

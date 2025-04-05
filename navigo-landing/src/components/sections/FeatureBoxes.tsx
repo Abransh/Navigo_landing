@@ -155,7 +155,7 @@ const FeatureBoxes: React.FC = () => {
                     src={feature.leftImage || "/placeholder.svg"}
                     alt=""
                     fill
-                    className="object-cover opacity-50"
+                    className="object-cover "
                     aria-hidden="true"
                     sizes="100px"
                   />

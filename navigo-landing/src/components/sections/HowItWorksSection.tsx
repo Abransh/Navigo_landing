@@ -12,6 +12,7 @@ import {
   Shield,
   LucideIcon 
 } from 'lucide-react';
+import Link from 'next/link';
 
 // Step component for each step in the process
 const ProcessStep = ({ 
@@ -210,7 +211,7 @@ export default function HowItWorksSection() {
                   ))}
                 </div>
                 <p className="text-sm font-heading font-semibold text-navy mt-1">97% Satisfaction Rate</p>
-                <p className="text-xs font-body text-foreground-muted">From 500+ travelers</p>
+                <p className="text-xs font-body text-foreground-muted">From 14 travelers</p>
               </div>
             </div>
           </motion.div>
@@ -226,9 +227,11 @@ export default function HowItWorksSection() {
           <p className="text-xl font-body text-foreground-muted mb-6">
             Ready to experience India like a local?
           </p>
-          <button className="bg-secondary hover:bg-secondary-dark text-white px-8 py-3.5 rounded-lg font-heading font-semibold transition-colors shadow-lg">
-            Try Navigo!
-          </button>
+          <Link href="/try-navigo">
+            <button className="bg-primary hover:bg-[#A64A03] text-white px-8 py-3.5 rounded-lg font-heading font-semibold transition-all duration-300 hover:scale-110 transform shadow-lg hover:shadow-xl">
+              Try Navigo!
+            </button>
+          </Link>
         </motion.div>
       </div>
     </section>

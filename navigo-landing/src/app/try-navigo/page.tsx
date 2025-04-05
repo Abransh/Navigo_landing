@@ -65,7 +65,7 @@ export default function TryNavigoPage() {
         <Navbar />
         
         {/* Simple Hero with Form */}
-        <section className="py-12 bg-[#1A5F7A]">
+        <section className="py-12 bg-[#BE5504]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-white mb-4">

@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import SectionTitle from '@/components/ui/SectionTitle';
 import { useMobile } from '@/hooks/use-mobile';
+import Link from 'next/link';
 
 interface ValueCardProps {
   icon: React.ReactNode;
@@ -250,9 +251,11 @@ const CoreValuesSection: React.FC = () => {
             &ldquo;At Navigo, we believe that the best travel experiences come from genuine human connections built on a foundation of trust, safety, and cultural respect.&rdquo;
           </blockquote>
           
-          <button className="bg-secondary hover:bg-secondary-dark text-white px-8 py-3.5 rounded-lg font-heading font-semibold transition-colors shadow-lg">
-            Join Our Community
-          </button>
+          <Link href="/try-navigo">
+            <button className="bg-primary hover:bg-[#A64A03] text-white px-8 py-3.5 rounded-lg font-heading font-semibold transition-all duration-300 hover:scale-110 transform shadow-lg hover:shadow-xl">
+              Join Our Community
+            </button>
+          </Link>
         </motion.div>
       </div>
       

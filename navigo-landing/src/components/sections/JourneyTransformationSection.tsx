@@ -6,6 +6,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import { ArrowRight, Check, X } from 'lucide-react';
 import SectionTitle from '@/components/ui/SectionTitle';
 import { useMobile } from '@/hooks/use-mobile';
+import Link from 'next/link';
 
 interface JourneyScenario {
   title: string;
@@ -276,10 +277,12 @@ const JourneyTransformationSection: React.FC = () => {
             <p className="text-xl text-foreground-muted mb-6 max-w-2xl mx-auto">
               Ready to experience the difference a local companion makes for your journey?
             </p>
-            <button className="bg-secondary hover:bg-secondary-dark text-white px-8 py-3.5 rounded-lg font-heading font-semibold transition-colors shadow-lg inline-flex items-center">
-              Transform Your Travel Experience
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </button>
+            <Link href="/try-navigo">
+              <button className="bg-primary hover:bg-[#A64A03] text-white px-8 py-3.5 rounded-lg font-heading font-semibold transition-all duration-300 hover:scale-110 transform shadow-lg hover:shadow-xl inline-flex items-center">
+                Transform Your Travel Experience
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
