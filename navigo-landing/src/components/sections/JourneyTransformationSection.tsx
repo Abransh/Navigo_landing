@@ -38,12 +38,12 @@ const JourneyTransformationSection: React.FC = () => {
     {
       title: "Communication",
       without: {
-        image: "/images/featuresbox1.jpg",
+        image: "/images/travellerConfused2.jpg",
         caption: "Struggle with language barriers and miscommunications",
         icon: <X className="w-4 h-4 text-white" />
       },
       with: {
-        image: "/images/featuresbox1.jpg",
+        image: "/images/travelwithIndians2.png",
         caption: "Communicate effortlessly with locals through your bilingual companion",
         icon: <Check className="w-4 h-4 text-white" />
       }
@@ -51,12 +51,12 @@ const JourneyTransformationSection: React.FC = () => {
     {
       title: "Discovery",
       without: {
-        image: "/images/featuresbox1.jpg",
+        image: "/images/crowdedPlaces.jpeg",
         caption: "Stick to crowded tourist spots, missing authentic experiences",
         icon: <X className="w-4 h-4 text-white" />
       },
       with: {
-        image: "/images/featuresbox1.jpg",
+        image: "/images/HiddenGems.jpeg",
         caption: "Discover hidden gems and local favorites only residents know about",
         icon: <Check className="w-4 h-4 text-white" />
       }
@@ -64,12 +64,12 @@ const JourneyTransformationSection: React.FC = () => {
     {
       title: "Fair Pricing",
       without: {
-        image: "/images/featuresbox1.jpg",
+        image: "/images/InflatedPrice2.webp",
         caption: "Pay inflated 'tourist prices' without realizing it",
         icon: <X className="w-4 h-4 text-white" />
       },
       with: {
-        image: "/images/featuresbox1.jpg",
+        image: "/images/foriengerwithIndians.jpg",
         caption: "Get fair local prices with a companion who negotiates on your behalf",
         icon: <Check className="w-4 h-4 text-white" />
       }
@@ -77,12 +77,12 @@ const JourneyTransformationSection: React.FC = () => {
     {
       title: "Safety & Confidence",
       without: {
-        image: "/images/featuresbox1.jpg",
+        image: "/images/Traveller con.jpg",
         caption: "Feel uncertain and on-guard in unfamiliar surroundings",
         icon: <X className="w-4 h-4 text-white" />
       },
       with: {
-        image: "/images/featuresbox1.jpg",
+        image: "/images/foriengerwithIndians.jpg",
         caption: "Explore with confidence knowing a trusted local has your back",
         icon: <Check className="w-4 h-4 text-white" />
       }
@@ -110,7 +110,7 @@ const JourneyTransformationSection: React.FC = () => {
   };
 
   return (
-    <section id="journey-transformation" className="py-24 bg-white overflow-hidden">
+    <section id="journey-transformation" className="py-24 bg-[#FFF8EA] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle 
           title="Transform Your India Experience" 

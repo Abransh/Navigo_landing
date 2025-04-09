@@ -11,10 +11,10 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-sand">
+    <main className="min-h-screen bg-[#FFF8EA]">
       <Navbar />
       <HeroSection />
-      <div className="bg-white py-10">
+      <div className="bg-[#FFF8EA] py-10">
         {/* Decorative element - inspired by Indian designs */}
         <div className="max-w-7xl mx-auto px-4 py-2">
           <div className="flex items-center justify-center">

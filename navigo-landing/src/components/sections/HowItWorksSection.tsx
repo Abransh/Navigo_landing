@@ -58,7 +58,7 @@ const ProcessStep = ({
     >
       {/* Step indicator and connecting line */}
       <div className="flex flex-col items-center mr-6">
-        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-heading font-bold text-xl">
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#1A5F7A] text-white font-heading font-bold text-xl">
           {number}
         </div>
         {!isLast && (
@@ -124,7 +124,7 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-white">
+    <section id="how-it-works" className="py-24 bg-[#FFF8EA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}

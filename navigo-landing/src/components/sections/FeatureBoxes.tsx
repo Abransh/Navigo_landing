@@ -52,7 +52,7 @@ const FeatureBoxes: React.FC = () => {
           "Discover hidden gems and experience destinations like a true local. Our companions share insider knowledge, family traditions, and off-the-beaten-path locations that you'd never find in guidebooks.",
         icon: MapPin,
         leftImage: "/images/QrBarBoxes.png",
-        rightImage: "/images/feature-image-4-right.jpg",
+        rightImage: "/images/AuthenticExp.jpeg",
       },
     ],
     []

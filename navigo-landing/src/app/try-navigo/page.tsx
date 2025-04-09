@@ -35,7 +35,7 @@ export default function TryNavigo() {
         </div> */}
       </section>
       
-      <div className="py-10">
+      <div className="py-10 bg-[#FFF8EA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Form - Moved to top */}
           <TryNavigoContactForm />
