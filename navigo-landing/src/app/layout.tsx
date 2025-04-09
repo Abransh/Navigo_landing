@@ -22,28 +22,38 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Navigo - Travel Like a Local in India",
-  description: "Connect with trusted local companions who help you navigate language barriers, avoid scams, and discover authentic cultural experiences in India.",
+  title: "Navigo - Your Local Travel Companion in India",
+  description: "Experience India like a local with Navigo's verified travel companions. Get personalized guidance, cultural insights, and authentic experiences.",
   icons: {
-    icon: '/images/logonew1.svg',
-    apple: '/images/logonew1.svg',
+    icon: '/Favicon.png',
+    apple: '/Favicon.png',
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${montserrat.variable} ${inter.variable} font-body antialiased bg-sand text-navy`}>
       <head>
-        <link rel="icon" href="/images/logonew1.svg" />
-        <link rel="apple-touch-icon" href="/images/logonew1.svg" />
+        <link rel="icon" href="/Favicon.png" />
+        <link rel="apple-touch-icon" href="/Favicon.png" />
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQHJ5XL5EJ"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-HQHJ5XL5EJ');
+            `,
+          }}
+        />
       </head>
-      <body
-        className={`${montserrat.variable} ${inter.variable} font-body antialiased bg-sand text-navy`}
-      >
+      <body>
         {children}
         <Analytics />
       </body>
