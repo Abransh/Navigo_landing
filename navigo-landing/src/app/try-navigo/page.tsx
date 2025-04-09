@@ -1,228 +1,140 @@
-// src/app/contact/page.tsx
-"use client";
-
-import { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { Mail, Phone, User, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import TryNavigoContactForm from '@/components/sections/TryNavigoContactForm';
 import Image from 'next/image';
+import { ArrowRight, MapPin, Shield, Languages, Star } from 'lucide-react';
 
-export default function TryNavigoPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: ''
-  });
-  
-  const [formStatus, setFormStatus] = useState<null | 'success' | 'error'>(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        setFormStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          phone: ''
-        });
-      } else {
-        console.error('Form submission error:', data.error);
-        setFormStatus('error');
-      }
-    } catch (error) {
-      console.error('Form submission failed:', error);
-      setFormStatus('error');
-    } finally {
-      setLoading(false);
-      setTimeout(() => {
-        setFormStatus(null);
-      }, 5000);
-    }
-  };
-
+export default function TryNavigo() {
   return (
-    <>
-      <main className="min-h-screen bg-white">
-        <Navbar />
+    <main className="min-h-screen bg-sand">
+      <Navbar />
+      
+      {/* Header Section */}
+      <section className="relative bg-primary py-16 overflow-hidden">
+        {/* Background decoration inspired by Indian patterns */}
+        {/* <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/indian-pattern.svg')] bg-repeat bg-contain" />
+        </div> */}
         
-        {/* Hero Section with Background Image */}
-        <section className="relative py-16 md:py-24">
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <Image 
-              src="/images/HeroSectionImage.jpg" 
-              alt="Navigo Travel Experience" 
-              fill 
-              className="object-cover w-full h-full brightness-50"
-              priority
-            />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
+              Try <span className="text-secondary">Navigo</span> Today
+            </h1>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              Take the first step toward experiencing India like a local. Fill out the form below and we'll connect you with a perfect companion for your journey.
+            </p>
+          </div>
+        </div>
+        
+        {/* Wave decoration with Indian-inspired pattern */}
+        {/* <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 96" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+            <path d="M0 96L60 85.3C120 75 240 53 360 58.7C480 64 600 96 720 90.7C840 85 960 43 1080 32C1200 21 1320 43 1380 53.3L1440 64V0H1380C1320 0 1200 0 1080 0C960 0 840 0 720 0C600 0 480 0 360 0C240 0 120 0 60 0H0V96Z" fill="#FFF8EA"/>
+          </svg>
+        </div> */}
+      </section>
+      
+      <div className="py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Contact Form - Moved to top */}
+          <TryNavigoContactForm />
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16 mt-16">
+            {/* Left side - Benefits */}
+            <div>
+              <h2 className="text-3xl font-heading font-bold text-navy mb-6">
+                Why Connect With a Navigo Companion?
+              </h2>
+              
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: <Shield className="w-5 h-5 text-secondary" />,
+                    title: "Safe & Verified",
+                    description: "All companions undergo thorough background checks and verification processes."
+                  },
+                  {
+                    icon: <Languages className="w-5 h-5 text-secondary" />,
+                    title: "Language Support",
+                    description: "Break through communication barriers with bilingual companions."
+                  },
+                  {
+                    icon: <MapPin className="w-5 h-5 text-secondary" />,
+                    title: "Authentic Experiences",
+                    description: "Discover hidden gems and local favorites not found in guidebooks."
+                  },
+                  {
+                    icon: <Star className="w-5 h-5 text-secondary" />,
+                    title: "Highly Rated",
+                    description: "Our companions maintain a 97% satisfaction rate from travelers."
+                  }
+                ].map((benefit, index) => (
+                  <div key={index} className="flex">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                      {benefit.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-semibold text-navy text-lg mb-1">{benefit.title}</h3>
+                      <p className="text-foreground-muted">{benefit.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-8 p-4 bg-secondary/10 rounded-lg border border-secondary/20">
+                <p className="text-navy italic">
+                  "My Navigo companion transformed my trip to India. Instead of feeling like a tourist, I experienced the culture like a local would."
+                  <span className="block mt-2 text-sm font-medium">— Emma P., Solo traveler from Australia</span>
+                </p>
+              </div>
+            </div>
+            
+            {/* Right side - Image */}
+            <div className="relative">
+              <div className="rounded-xl overflow-hidden shadow-lg border-4 border-white">
+                <div className="aspect-w-4 aspect-h-3 bg-gray-100">
+                  <Image 
+                    src="/images/local-companion-experience.jpg" 
+                    alt="Traveler with local companion" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              
+              {/* Decorative element */}
+              {/* <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg z-10">
+                <div className="flex items-center space-x-1 mb-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} className="text-secondary fill-current" />
+                  ))}
+                </div>
+                <p className="text-sm font-heading font-semibold text-navy">500+ Successful Matches</p>
+              </div> */}
+              
+              {/* Decorative background */}
+              <div className="absolute -z-10 -top-6 -left-6 -bottom-6 -right-6 border-2 border-dashed border-primary/20 rounded-xl"></div>
+            </div>
           </div>
           
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-md">
-                Travel with Navigo
-              </h1>
-              <p className="text-xl text-white mb-8 drop-shadow-md max-w-xl mx-auto">
-                Connect with trusted local companions who make your journey authentic and safe
-              </p>
-            </div>
-            
-            <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-lg shadow-xl p-8 max-w-md mx-auto">
-              {formStatus === 'success' && (
-                <div className="bg-green-50 text-green-800 p-3 rounded-md mb-4">
-                  Thanks! We'll contact you shortly.
-                </div>
-              )}
-              
-              {formStatus === 'error' && (
-                <div className="bg-red-50 text-red-800 p-3 rounded-md mb-4">
-                  Something went wrong. Please try again.
-                </div>
-              )}
-              
-              <h2 className="text-xl font-bold text-gray-900 mb-4 text-center">Get Started Today</h2>
-              
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Name
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <User className="h-5 w-5 text-gray-400" />
-                    </div>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
-                      placeholder="Your name"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Mail className="h-5 w-5 text-gray-400" />
-                    </div>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
-                      placeholder="you@example.com"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Phone className="h-5 w-5 text-gray-400" />
-                    </div>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
-                      placeholder="+91 123 456 7890"
-                    />
-                  </div>
-                </div>
-                
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full flex justify-center items-center px-4 py-3 border border-transparent rounded-md text-white bg-[#BE5504] hover:bg-[#A64A03] transition-all duration-300 hover:scale-110 transform shadow-md hover:shadow-lg"
-                  >
-                    {loading ? (
-                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                    ) : (
-                      <>
-                        Get Started Now
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </>
-                    )}
-                  </button>
-                </div>
-              </form>
-            </div>
+          {/* Bottom CTA */}
+          <div className="mt-16 text-center">
+            <h3 className="text-2xl font-heading font-semibold text-navy mb-3">
+              Not Ready to Book Yet?
+            </h3>
+            <p className="text-foreground-muted mb-6 max-w-2xl mx-auto">
+              Join our waitlist to stay updated on new locations, features, and receive exclusive travel tips for your upcoming India adventure.
+            </p>
+            <button className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md inline-flex items-center">
+              Join Our Waitlist
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </button>
           </div>
-        </section>
-        
-        {/* Simple Info Section */}
-        <section className="py-12">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Experience India Like Never Before
-              </h2>
-              <p className="text-lg text-gray-600 max-w-lg mx-auto">
-                Join Navigo and travel with local companions who make your journey safe and authentic
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-xl font-bold text-[#BE5504] mb-2">Safety</div>
-                <p className="text-gray-600">Travel with verified companions who ensure your safety</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-xl font-bold text-[#BE5504] mb-2">Authenticity</div>
-                <p className="text-gray-600">Experience the real India beyond tourist attractions</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-xl font-bold text-[#BE5504] mb-2">Simplicity</div>
-                <p className="text-gray-600">We handle the details so you can focus on enjoying your journey</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <Footer />
-      </main>
-    </>
+        </div>
+      </div>
+      
+      <Footer />
+    </main>
   );
 }

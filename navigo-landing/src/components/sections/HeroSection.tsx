@@ -30,9 +30,9 @@ export default function EnhancedHeroSection() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="flex items-center mb-6">
-              <div className="bg-[#FF9933] text-[#FFF8EA] text-sm font-semibold px-3 py-1 rounded-full">
+              {/* <div className="bg-[#FF9933] text-[#FFF8EA] text-sm font-semibold px-3 py-1 rounded-full">
                 Join the Waitlist
-              </div>
+              </div> */}
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFF8EA] leading-tight mb-6">
