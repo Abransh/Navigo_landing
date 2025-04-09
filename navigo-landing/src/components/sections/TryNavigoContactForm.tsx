@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Send, Users, Shield } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Image from "next/image";
 
 export default function TryNavigoContactForm() {
   const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ export default function TryNavigoContactForm() {
         <div className="grid md:grid-cols-[1fr_100px]">
           {/* Form section */}
           <div>
-            <div className="bg-primary p-6 md:p-8">
+            <div className="bg-[#1A5F7A] p-6 md:p-8">
               <div className="flex items-center bg space-x-3">
                 <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
                   <Users className="h-5 w-5 text-white" />
@@ -135,15 +136,14 @@ export default function TryNavigoContactForm() {
           </div>
 
           {/* Decorative Side Panel */}
-          <div className="w-[100px] bg-gradient-to-b from-primary via-earth to-secondary hidden md:block overflow-hidden">
-            <div className="h-full w-full relative opacity-30">
-              {/* Simple decorative elements instead of SVG pattern */}
-              <div className="absolute inset-0 flex flex-col justify-around items-center p-4">
-                <div className="w-12 h-12 rounded-full border-2 border-white opacity-60"></div>
-                <div className="w-8 h-8 rounded-full border-2 border-white opacity-60"></div>
-                <div className="w-10 h-10 rounded-full border-2 border-white opacity-60"></div>
-              </div>
-            </div>
+          <div className="w-[100px] hidden md:block overflow-hidden">
+            <Image 
+              src="/images/QrBarBoxes.png" 
+              alt="QR Bar Boxes" 
+              width={100}
+              height={100}
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>

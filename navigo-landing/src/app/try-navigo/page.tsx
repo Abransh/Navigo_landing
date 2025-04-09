@@ -10,7 +10,7 @@ export default function TryNavigo() {
       <Navbar />
       
       {/* Header Section */}
-      <section className="relative bg-primary py-16 overflow-hidden">
+      <section className="relative bg-[#FFF8EA] py-16 overflow-hidden">
         {/* Background decoration inspired by Indian patterns */}
         {/* <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/indian-pattern.svg')] bg-repeat bg-contain" />
@@ -18,10 +18,10 @@ export default function TryNavigo() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
-              Try <span className="text-secondary">Navigo</span> Today
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-black mb-4">
+              Try <span className="text-[#FF9933]">Navigo</span> Today
             </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+            <p className="text-xl text-[#BE5504] max-w-3xl mx-auto">
               Take the first step toward experiencing India like a local. Fill out the form below and we'll connect you with a perfect companion for your journey.
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function TryNavigo() {
             
             {/* Right side - Image */}
             <div className="relative">
-              <div className="rounded-xl overflow-hidden shadow-lg border-4 border-white">
+              {/* <div className="rounded-xl overflow-hidden shadow-lg border-4 border-white">
                 <div className="aspect-w-4 aspect-h-3 bg-gray-100">
                   <Image 
                     src="/images/local-companion-experience.jpg" 
@@ -101,7 +101,7 @@ export default function TryNavigo() {
                     className="object-cover"
                   />
                 </div>
-              </div>
+              </div> */}
               
               {/* Decorative element */}
               {/* <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg z-10">
@@ -114,7 +114,7 @@ export default function TryNavigo() {
               </div> */}
               
               {/* Decorative background */}
-              <div className="absolute -z-10 -top-6 -left-6 -bottom-6 -right-6 border-2 border-dashed border-primary/20 rounded-xl"></div>
+              {/* <div className="absolute -z-10 -top-6 -left-6 -bottom-6 -right-6 border-2 border-dashed border-primary/20 rounded-xl"></div> */}
             </div>
           </div>
           
