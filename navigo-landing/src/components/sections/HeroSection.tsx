@@ -129,7 +129,7 @@ export default function EnhancedHeroSection() {
                   <div className="absolute top-6 left-6 right-6 bottom-40 bg-[#FFF8EA] rounded-xl overflow-hidden z-0">
                     <div className="absolute inset-0 opacity-30">
                       <Image 
-                        src="/images/indian-map.svg" 
+                        src="/images/logofullwithicon.svg" 
                         alt="Map of India" 
                         fill 
                         className="object-cover"
@@ -231,7 +231,7 @@ export default function EnhancedHeroSection() {
                   <div className="w-8 h-8 rounded-full bg-[#BE5504] border-2 border-white"></div>
                   <div className="w-8 h-8 rounded-full bg-[#FF9933] border-2 border-white"></div>
                 </div>
-                <span className="text-sm font-medium text-[#0A2342]">500+ travelers matched</span>
+                <span className="text-sm font-medium text-[#0A2342]">14 travelers matched</span>
               </motion.div>
 
               

@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   title: "Navigo - Your Local Travel Companion in India",
   description: "Experience India like a local with Navigo's verified travel companions. Get personalized guidance, cultural insights, and authentic experiences.",
   icons: {
-    icon: '/Favicon.png',
-    apple: '/Favicon.png',
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
@@ -38,8 +38,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${inter.variable} font-body antialiased bg-sand text-navy`}>
       <head>
-        <link rel="icon" href="/Favicon.png" />
-        <link rel="apple-touch-icon" href="/Favicon.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
         {/* Google Analytics */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQHJ5XL5EJ"></script>
         <script
