@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ChevronRight, MapPin, Shield, Languages, Star, Users } from 'lucide-react';
+import { ChevronRight, Shield, Languages, MapPin, Users, Star } from 'lucide-react';
 
-export default function EnhancedHeroSection() {
+const HeroSectionDesktop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
@@ -234,8 +234,6 @@ export default function EnhancedHeroSection() {
                 <span className="text-sm font-medium text-[#0A2342]">14 travelers matched</span>
               </motion.div>
 
-              
-
               {/* Decorative element inspired by Indian motifs */}
               <div className="absolute -right-8 top-1/3 z-0 opacity-20">
                 <svg width="64" height="120" viewBox="0 0 64 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -260,4 +258,6 @@ export default function EnhancedHeroSection() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroSectionDesktop;

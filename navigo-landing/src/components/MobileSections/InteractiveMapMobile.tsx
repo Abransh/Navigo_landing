@@ -4,13 +4,14 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Info, Users } from 'lucide-react';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { cn } from '@/lib/utils';
 
 // Data for service regions
 const serviceRegions = [
   {
     id: "delhi",
     name: "Delhi",
-    position: { x: 290, y: 150},
+    position: { x: 190, y: 110},
     description: "Explore the historical monuments and vibrant markets of India's capital city with our knowledgeable local companions.",
     highlights: ["Old Delhi", "Red Fort", "Qutub Minar", "Humayun's Tomb"],
     active: true
@@ -18,7 +19,7 @@ const serviceRegions = [
   {
     id: "jaipur",
     name: "Jaipur",
-    position: { x: 260, y: 160 },
+    position: { x: 160, y: 130 },
     description: "Discover the 'Pink City' and its majestic forts and palaces with guides who know every hidden gem.",
     highlights: ["Amber Fort", "City Palace", "Hawa Mahal", "Local Markets"],
     active: true
@@ -26,7 +27,7 @@ const serviceRegions = [
   {
     id: "jodhpur",
     name: "Jodhpur",
-    position: { x: 230, y: 190 },
+    position: { x:130, y: 140 },
     description: "Experience the 'Blue City' with its imposing fort and maze-like streets known only to locals.",
     highlights: ["Mehrangarh Fort", "Clock Tower Market", "Blue City Walk", "Desert Excursions"],
     active: true
@@ -34,7 +35,7 @@ const serviceRegions = [
   {
     id: "mumbai",
     name: "Mumbai",
-    position: { x: 230, y: 300 },
+    position: { x: 140, y: 230 },
     description: "Navigate the bustling streets of India's financial capital with locals who understand its unique rhythm and soul.",
     highlights: ["Gateway of India", "Dharavi", "Local Food Tours", "Bollywood"],
     active: true
@@ -42,7 +43,7 @@ const serviceRegions = [
   {
     id: "goa",
     name: "Goa",
-    position: { x: 240, y: 350 },
+    position: { x: 160, y: 260 },
     description: "Relax on pristine beaches and experience Portuguese influence with companions who know more than just tourist spots.",
     highlights: ["Hidden Beaches", "Old Goa Churches", "Spice Plantations", "Local Cuisine"],
     active: true
@@ -50,7 +51,7 @@ const serviceRegions = [
   {
     id: "varanasi",
     name: "Varanasi",
-    position: { x: 400, y: 190 },
+    position: { x: 260, y: 150},
     description: "Immerse in the spiritual capital of India with guides who understand its deep religious and cultural significance.",
     highlights: ["Ganges Ghats", "Morning Rituals", "Ancient Temples", "Cultural Performances"],
     active: true
@@ -58,7 +59,7 @@ const serviceRegions = [
   {
     id: "bangalore",
     name: "Bangalore",
-    position: { x: 330, y: 335 },
+    position: { x: 200, y: 290 },
     description: "Experience the perfect blend of tradition and technology in India's Silicon Valley with our tech-savvy companions.",
     highlights: ["Cubbon Park", "MG Road", "Local Breweries", "Tech Parks"],
     active: true
@@ -66,7 +67,7 @@ const serviceRegions = [
   {
     id: "chennai",
     name: "Chennai",
-    position: { x: 300, y: 460 },
+    position: { x: 220, y: 320 },
     description: "Discover South Indian culture, arts, and cuisine with companions who bring the city's heritage to life.",
     highlights: ["Marina Beach", "Kapaleeshwarar Temple", "Music Academies", "South Indian Cuisine"],
     active: true
@@ -74,7 +75,7 @@ const serviceRegions = [
   {
     id: "udaipur",
     name: "Udaipur",
-    position: { x: 230, y: 210 },
+    position: { x: 150, y: 170 },
     description: "Experience the romantic 'City of Lakes' with locals who know its royal history and scenic beauty intimately.",
     highlights: ["Lake Pichola", "City Palace", "Vintage Car Museum", "Local Arts"],
     active: true
