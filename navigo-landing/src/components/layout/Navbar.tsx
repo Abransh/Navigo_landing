@@ -6,10 +6,9 @@ import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm">
@@ -36,6 +35,9 @@ const [scrollPosition, setScrollPosition] = useState(0);
             </Link>
             <Link href="#about" className="text-gray-700 hover:text-primary font-medium">
               About Us
+            </Link>
+            <Link href="/blog" className="text-gray-700 hover:text-primary font-medium">
+              Blog
             </Link>
             <Link href="#faq" className="text-gray-700 hover:text-primary font-medium">
               FAQ
@@ -81,6 +83,13 @@ const [scrollPosition, setScrollPosition] = useState(0);
                 onClick={() => setIsMenuOpen(false)}
               >
                 About Us
+              </Link>
+              <Link 
+                href="/blog" 
+                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
               </Link>
               <Link 
                 href="#faq" 
