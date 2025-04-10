@@ -44,7 +44,7 @@ const FeatureBoxes: React.FC = () => {
           "Break through language barriers with our bilingual companions. They'll help translate conversations, read menus, negotiate with vendors, and ensure you're always understood wherever you go.",
         icon: Languages,
         leftImage: "/images/QrBarBoxes.png",
-        rightImage: "/images/Featuresbox3.jpg",
+        rightImage: "/images/SeamlessCom.png",
       },
       {
         title: "Authentic Cultural Experiences",
