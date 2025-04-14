@@ -51,12 +51,12 @@ const JourneyTransformationSection: React.FC = () => {
     {
       title: "Discovery",
       without: {
-        image: "/images/crowdedPlaces.jpeg",
+        image: "/images/ConfusedTravellerNavigation.png",
         caption: "Stick to crowded tourist spots, missing authentic experiences",
         icon: <X className="w-4 h-4 text-white" />
       },
       with: {
-        image: "/images/HiddenGems.jpeg",
+        image: "/images/CompanionAtLocalSpot.png",
         caption: "Discover hidden gems and local favorites only residents know about",
         icon: <Check className="w-4 h-4 text-white" />
       }
@@ -64,12 +64,12 @@ const JourneyTransformationSection: React.FC = () => {
     {
       title: "Fair Pricing",
       without: {
-        image: "/images/InflatedPrice2.webp",
+        image: "/images/Overrcharged.png",
         caption: "Pay inflated 'tourist prices' without realizing it",
         icon: <X className="w-4 h-4 text-white" />
       },
       with: {
-        image: "/images/foriengerwithIndians.jpg",
+        image: "/images/Negotiaion.png",
         caption: "Get fair local prices with a companion who negotiates on your behalf",
         icon: <Check className="w-4 h-4 text-white" />
       }

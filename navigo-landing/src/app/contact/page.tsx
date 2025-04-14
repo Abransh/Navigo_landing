@@ -30,18 +30,18 @@ export default function ContactPage() {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
+        setFormData({
+          name: '',
+          email: '',
         subject: '',
-        message: ''
-      });
+          message: ''
+        });
     }, 1500);
   };
 
   return (
     <>
-      <Navbar />
+        <Navbar />
       <main className="bg-white">
         <section className="bg-[#BE5504] py-16 text-white">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -49,7 +49,7 @@ export default function ContactPage() {
             <p className="text-lg mb-10 text-center max-w-2xl mx-auto">
               Have questions or feedback? We'd love to hear from you. Get in touch with our team.
             </p>
-          </div>
+                    </div>
         </section>
 
         <section className="py-16">
@@ -74,32 +74,32 @@ export default function ContactPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                           <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">Your Name</label>
-                          <input
+                        <input
                             type="text"
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
                             required
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
-                            placeholder="John Doe"
-                          />
+                          placeholder="John Doe"
+                        />
                         </div>
                         <div>
                           <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">Email Address</label>
-                          <input
+                        <input
                             type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
                             required
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
                             placeholder="john@example.com"
-                          />
-                        </div>
+                        />
                       </div>
-
+                    </div>
+                    
                       <div className="mb-6">
                         <label htmlFor="subject" className="block mb-2 text-sm font-medium text-gray-700">Subject</label>
                         <input
@@ -112,22 +112,22 @@ export default function ContactPage() {
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BE5504] focus:border-transparent"
                           placeholder="How can we help you?"
                         />
-                      </div>
-
+                    </div>
+                    
                       <div className="mb-6">
                         <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-700">Message</label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          value={formData.message}
-                          onChange={handleChange}
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
                           rows={6}
                           required
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BE5504] focus:border-transparent resize-none"
                           placeholder="Your message here..."
-                        ></textarea>
-                      </div>
-
+                      ></textarea>
+                    </div>
+                    
                       {submitError && (
                         <div className="p-4 mb-6 text-red-700 bg-red-100 rounded-lg">
                           {submitError}
@@ -141,10 +141,10 @@ export default function ContactPage() {
                       >
                         {isSubmitting ? (
                           <span className="inline-flex items-center">
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
                             Sending...
                           </span>
                         ) : (
@@ -153,8 +153,8 @@ export default function ContactPage() {
                           </span>
                         )}
                       </button>
-                    </form>
-                  </div>
+                  </form>
+                </div>
                 )}
               </div>
               
@@ -169,18 +169,18 @@ export default function ContactPage() {
                         <h3 className="font-medium text-gray-900">Email</h3>
                         <p className="mt-1 text-gray-600">info@navigoindia.com</p>
                         <p className="mt-1 text-gray-600">support@navigoindia.com</p>
-                      </div>
-                    </div>
-                    
+                </div>
+                </div>
+                
                     <div className="flex items-start">
                       <Phone className="h-6 w-6 text-[#BE5504] mr-4 mt-1" />
                       <div>
                         <h3 className="font-medium text-gray-900">Phone</h3>
                         <p className="mt-1 text-gray-600">+91 98765 43210</p>
                         <p className="mt-1 text-gray-600">Mon-Fri 9am to 6pm IST</p>
-                      </div>
-                    </div>
-                    
+                </div>
+              </div>
+              
                     <div className="flex items-start">
                       <MapPin className="h-6 w-6 text-[#BE5504] mr-4 mt-1" />
                       <div>
@@ -191,9 +191,9 @@ export default function ContactPage() {
                           New Delhi, 110001<br />
                           India
                         </p>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+                </div>
+              </div>
                 </div>
               </div>
             </div>
@@ -203,4 +203,4 @@ export default function ContactPage() {
       <Footer />
     </>
   );
-} 
+}

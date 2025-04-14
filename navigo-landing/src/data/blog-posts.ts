@@ -72,7 +72,7 @@ export const blogPosts: BlogPost[] = [
       <!-- More content here -->
     `,
     featured: true
-  }
+  },
   {
     id: 'india-safe-solo-female-travelers',
     slug: 'india-safe-solo-female-travelers',

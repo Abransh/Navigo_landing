@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://trynavigo.com
+
+# Sitemaps
+Sitemap: https://trynavigo.com/sitemap.xml
+Sitemap: https://trynavigo.com/server-sitemap.xml
