@@ -1,4 +1,7 @@
 // src/components/blog/SearchBar.tsx
+
+ "use client";
+ 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';

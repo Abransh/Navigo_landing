@@ -1,4 +1,4 @@
-/ src/components/blog/NewsletterSignup.tsx
+// src/components/blog/NewsletterSignup.tsx
 import React from 'react';
 
 export function NewsletterSignup() {
