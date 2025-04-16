@@ -7,6 +7,13 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Calendar, Clock } from "lucide-react";
 
+// Define type for author page params
+type AuthorPageParams = {
+  params:  Promise<{
+    author: string;
+  }>;
+};
+
 // Generate static params for all authors
 export function generateStaticParams() {
   const authors = Array.from(
@@ -19,15 +26,17 @@ export function generateStaticParams() {
 }
 
 // Dynamic metadata for each author page
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }: AuthorPageParams) {
   // Find author
-  const authorName = params.author
+  
+  const resolvedParams = await params;
+  const authorName = resolvedParams.author
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
   
   const authorPosts = blogPosts.filter(
-    (post) => post.author.name.toLowerCase().replace(/\s+/g, '-') === params.author
+    (post) => post.author.name.toLowerCase().replace(/\s+/g, '-') === resolvedParams.author
   );
   
   if (authorPosts.length === 0) {
@@ -45,7 +54,7 @@ export function generateMetadata({ params }) {
     openGraph: {
       title: `Articles by ${author.name} | Navigo Blog`,
       description: `Read travel insights, tips, and stories about India written by ${author.name}, ${author.role.toLowerCase()}.`,
-      url: `https://navigoindia.com/blog/authors/${params.author}`,
+      url: `https://www.trynavigo.com/blog/authors/${resolvedParams.author}`,
       siteName: "Navigo",
       images: [
         {
@@ -61,10 +70,12 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function AuthorPage({ params }) {
+export default async function AuthorPage({ params }: AuthorPageParams) {
   // Find author's posts
+  const resolvedParams = await params;
+  
   const authorPosts = blogPosts.filter(
-    (post) => post.author.name.toLowerCase().replace(/\s+/g, '-') === params.author
+    (post) => post.author.name.toLowerCase().replace(/\s+/g, '-') === resolvedParams.author
   );
   
   if (authorPosts.length === 0) {

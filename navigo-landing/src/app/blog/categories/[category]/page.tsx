@@ -7,6 +7,13 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Calendar } from "lucide-react";
 
+// Define type for category page params
+type CategoryPageParams = {
+  params: Promise<{
+    category: string;
+  }>;
+};
+
 // Generate static params for all categories
 export function generateStaticParams() {
   const categories = Array.from(
@@ -19,9 +26,10 @@ export function generateStaticParams() {
 }
 
 // Dynamic metadata for each category page
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }: CategoryPageParams) {
   // Convert URL slug to display format (e.g., 'travel-tips' to 'Travel Tips')
-  const displayCategory = params.category
+  const resolvedParams = await params;
+  const displayCategory = resolvedParams.category
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
@@ -29,7 +37,7 @@ export function generateMetadata({ params }) {
   // Check if the category exists
   const categoryExists = blogPosts.some((post) => 
     post.categories.some(
-      (cat) => cat.toLowerCase().replace(/\s+/g, '-') === params.category
+      (cat) => cat.toLowerCase().replace(/\s+/g, '-') === resolvedParams.category
     )
   );
   
@@ -47,7 +55,7 @@ export function generateMetadata({ params }) {
     openGraph: {
       title: `${displayCategory} | Navigo Blog`,
       description: `Discover articles, tips, and insights about ${displayCategory.toLowerCase()} from Navigo's local travel experts and companions in India.`,
-      url: `https://navigoindia.com/blog/categories/${params.category}`,
+      url: `https://www.trynavigo.com/blog/categories/${resolvedParams.category}`,
       siteName: "Navigo",
       images: [
         {
@@ -63,9 +71,11 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function CategoryPage({ params }) {
+export default async function CategoryPage({ params }: CategoryPageParams) {
   // Convert URL slug to display format (e.g., 'travel-tips' to 'Travel Tips')
-  const displayCategory = params.category
+  const resolvedParams = await params;
+
+  const displayCategory = resolvedParams.category
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
@@ -73,7 +83,7 @@ export default function CategoryPage({ params }) {
   // Filter posts by category
   const categoryPosts = blogPosts.filter((post) => 
     post.categories.some(
-      (cat) => cat.toLowerCase().replace(/\s+/g, '-') === params.category
+      (cat) => cat.toLowerCase().replace(/\s+/g, '-') === resolvedParams.category
     )
   );
   
