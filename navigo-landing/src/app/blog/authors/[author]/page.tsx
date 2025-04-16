@@ -1,13 +1,11 @@
 // src/app/blog/authors/[author]/page.tsx
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { blogPosts } from "@/data/blog-posts";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { BlogCard } from "@/components/blog/BlogCard";
-import { NewsletterSignup } from "@/components/blog/NewsletterSignup";
+import { Calendar, Clock } from "lucide-react";
 
 // Generate static params for all authors
 export function generateStaticParams() {
@@ -21,7 +19,7 @@ export function generateStaticParams() {
 }
 
 // Dynamic metadata for each author page
-export function generateMetadata({ params }: { params: { author: string } }): Metadata {
+export function generateMetadata({ params }) {
   // Find author
   const authorName = params.author
     .split('-')
@@ -63,7 +61,7 @@ export function generateMetadata({ params }: { params: { author: string } }): Me
   };
 }
 
-export default function AuthorPage({ params }: { params: { author: string } }) {
+export default function AuthorPage({ params }) {
   // Find author's posts
   const authorPosts = blogPosts.filter(
     (post) => post.author.name.toLowerCase().replace(/\s+/g, '-') === params.author
@@ -155,13 +153,93 @@ export default function AuthorPage({ params }: { params: { author: string } }) {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {authorPosts.map((post) => (
-              <BlogCard key={post.id} post={post} />
+              <article
+                key={post.id}
+                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-border"
+              >
+                <Link href={`/blog/${post.slug}`} className="block">
+                  <div className="relative aspect-[16/9]">
+                    <Image
+                      src={post.coverImage || "/images/blog/placeholder.jpg"}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {post.categories[0] && (
+                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-navy px-3 py-1 rounded-full text-xs font-medium">
+                        {post.categories[0]}
+                      </div>
+                    )}
+                  </div>
+                </Link>
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-heading font-bold text-navy mb-2 line-clamp-2">
+                    <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                      {post.title}
+                    </Link>
+                  </h3>
+                  
+                  <p className="text-foreground-muted mb-4 text-sm line-clamp-2">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mt-auto">
+                    <div className="flex items-center text-xs text-foreground-muted">
+                      <Calendar className="w-3 h-3 mr-1" />
+                      <span>{post.date}</span>
+                    </div>
+                    
+                    <div className="flex items-center text-xs text-foreground-muted">
+                      <Clock className="w-3 h-3 mr-1" />
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>
 
         {/* Newsletter Signup */}
-        <NewsletterSignup />
+        <div className="bg-primary/10 rounded-xl p-8 md:p-12 relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute -right-20 -bottom-20 w-64 h-64 opacity-10">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100,10 L120,90 L200,100 L120,110 L100,190 L80,110 L0,100 L80,90 L100,10 Z" fill="#1A5F7A"/>
+              <circle cx="100" cy="100" r="50" fill="none" stroke="#1A5F7A" strokeWidth="1" />
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#1A5F7A" strokeWidth="1" />
+            </svg>
+          </div>
+          
+          <div className="relative z-10 md:max-w-xl">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-navy mb-3">
+              Never Miss a Story
+            </h2>
+            <p className="text-foreground-muted mb-6">
+              Subscribe to our newsletter for the latest travel tips, local insights, and exclusive content delivered straight to your inbox.
+            </p>
+            
+            <form className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+            
+            <p className="mt-3 text-xs text-foreground-muted">
+              By subscribing, you agree to our privacy policy. We'll never spam you.
+            </p>
+          </div>
+        </div>
       </div>
 
       <Footer />

@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import { blogPosts } from "@/data/blog-posts";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { BlogCard } from "@/components/blog/BlogCard";
 import { BlogHero } from "@/components/blog/BlogHero";
 import { NewsletterSignup } from "@/components/blog/NewsletterSignup";
-import { SearchBar } from "@/components/blog/SearchBar";
+import Link from "next/link";
+import Image from "next/image";
+import { Calendar } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Search Results | Navigo Blog",
@@ -17,11 +18,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SearchPage({
-  searchParams,
-}: {
-  searchParams: { q: string };
-}) {
+export default function SearchPage({ params }) {
+    
   const query = searchParams.q || "";
   
   // Search logic
@@ -51,7 +49,24 @@ export default function SearchPage({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Bar */}
         <div className="max-w-xl mx-auto mb-12">
-          <SearchBar />
+          <form className="relative" action="/blog/search" method="get">
+            <input
+              type="text"
+              name="q"
+              placeholder="Search articles..."
+              defaultValue={query}
+              className="w-full px-4 py-2 pr-10 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+            <button
+              type="submit"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground-muted hover:text-navy transition-colors"
+              aria-label="Search"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </form>
         </div>
         
         {/* Search Results */}
@@ -77,7 +92,59 @@ export default function SearchPage({
               ) : (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {searchResults.map((post) => (
-                    <BlogCard key={post.id} post={post} />
+                    <article
+                      key={post.id}
+                      className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-border"
+                    >
+                      <Link href={`/blog/${post.slug}`} className="block">
+                        <div className="relative aspect-[16/9]">
+                          <Image
+                            src={post.coverImage || "/images/blog/placeholder.jpg"}
+                            alt={post.title}
+                            fill
+                            className="object-cover"
+                          />
+                          {post.categories[0] && (
+                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-navy px-3 py-1 rounded-full text-xs font-medium">
+                              {post.categories[0]}
+                            </div>
+                          )}
+                        </div>
+                      </Link>
+                      
+                      <div className="p-6">
+                        <h3 className="text-xl font-heading font-bold text-navy mb-2 line-clamp-2">
+                          <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                            {post.title}
+                          </Link>
+                        </h3>
+                        
+                        <p className="text-foreground-muted mb-4 text-sm line-clamp-2">
+                          {post.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between mt-auto">
+                          <div className="flex items-center">
+                            <div className="w-8 h-8 rounded-full overflow-hidden relative mr-2">
+                              <Image
+                                src={post.author.avatar}
+                                alt={post.author.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-navy">{post.author.name}</p>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-center text-xs text-foreground-muted">
+                            <Calendar className="w-3 h-3 mr-1" />
+                            <span>{post.date}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
                   ))}
                 </div>
               )}
