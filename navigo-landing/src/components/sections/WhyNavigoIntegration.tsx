@@ -47,9 +47,9 @@ export default function WhyNavigoIntegration() {
       try {
         // Create an array of promises that resolve when each image is loaded
         const svgUrls = [
-          '/Sarah talking.svg',
-          '/Sarah anxious.svg',
-          '/Sarah happy again after priya.svg',
+          '/Sarah-talking.svg',
+          '/Sarah-anxious.svg',
+          '/Sarah-happy-again-after-priya.svg',
           // We'll have a fallback for Priya since we don't have her SVG yet
         ];
         

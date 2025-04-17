@@ -7,6 +7,7 @@ var HowItWorksSection_1 = require("@/components/sections/HowItWorksSection");
 var JourneyTransformationSection_1 = require("@/components/sections/JourneyTransformationSection");
 var CoreValuesSection_1 = require("@/components/sections/CoreValuesSection");
 var InteractiveMapSection_1 = require("@/components/sections/InteractiveMapSection");
+var WhyNavigoIntegration_1 = require("@/components/sections/WhyNavigoIntegration");
 var WhyNavigoSection_1 = require("@/components/sections/WhyNavigoSection");
 var FAQSection_1 = require("@/components/sections/FAQSection");
 var Footer_1 = require("@/components/layout/Footer");
@@ -34,6 +35,7 @@ function Home() {
                     react_1["default"].createElement("path", { d: "M0,20 C50,0 100,40 150,20 C200,0 250,40 300,20 C350,0 400,40 450,20 C500,0 550,40 600,20 C650,0 700,40 750,20 C800,0 850,40 900,20 C950,0 1000,40 1050,20 C1100,0 1150,40 1200,20", fill: "none", stroke: "#1A5F7A", strokeWidth: "1", opacity: "0.3" })))),
         react_1["default"].createElement(HowItWorksSection_1["default"], null),
         react_1["default"].createElement(WhyNavigoSection_1["default"], null),
+        react_1["default"].createElement(WhyNavigoIntegration_1["default"], null),
         react_1["default"].createElement("div", { className: "bg-sand py-8" },
             react_1["default"].createElement("div", { className: "max-w-7xl mx-auto flex justify-center" },
                 react_1["default"].createElement("svg", { width: "80", height: "40", viewBox: "0 0 80 40", xmlns: "http://www.w3.org/2000/svg" },

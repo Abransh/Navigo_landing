@@ -72,9 +72,9 @@ function WhyNavigoIntegration() {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         svgUrls = [
-                            '/Sarah talking.svg',
-                            '/Sarah anxious.svg',
-                            '/Sarah happy again after priya.svg',
+                            '/Sarah-talking.svg',
+                            '/Sarah-anxious.svg',
+                            '/Sarah-happy-again-after-priya.svg',
                         ];
                         preloadPromises = svgUrls.map(function (url) {
                             return new Promise(function (resolve, reject) {

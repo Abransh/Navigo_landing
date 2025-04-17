@@ -47,6 +47,9 @@ export default function Home() {
       </div>
       <HowItWorksSection />
       <WhyNavigoSection />
+      <WhyNavigoIntegration />
+      
+      {/* Decorative element - wave pattern */}
       
       {/* Decorative element - lotus-inspired transition */}
       <div className="bg-sand py-8">
