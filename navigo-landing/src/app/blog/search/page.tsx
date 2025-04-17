@@ -21,14 +21,15 @@ export const metadata: Metadata = {
 // Define type for search page props
 type SearchPageProps = {
   params: Promise<{}>;
-  searchParams: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 };
 
 export default async function SearchPage({ params, searchParams }: SearchPageProps) {
   // Resolve the params promise (although it's empty for search pages)
-  await params;
+  const resolvedParams = await params;
   
-  const query = searchParams.q || "";
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams.q || "";
   
   // Search logic
   const searchResults = query

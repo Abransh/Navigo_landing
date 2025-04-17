@@ -13,7 +13,7 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
   
   // Create a range of page numbers to display
-  let pageRange = pageNumbers;
+  let pageRange: (number | null)[] = pageNumbers;
   if (totalPages > 5) {
     if (currentPage <= 3) {
       // Near the start
