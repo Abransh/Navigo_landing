@@ -286,8 +286,8 @@ export default async function CategoryPage({ params }: CategoryPageParams) {
 }
 
 // Helper function to get category descriptions
-function getCategoryDescription(category) {
-  const descriptions = {
+function getCategoryDescription(category: string) {
+  const descriptions: Record<string, string> = {
     "Travel Tips": "Essential advice and practical guidance for travelers planning their journey through India. From transportation and accommodation to cultural etiquette and safety.",
     "Cultural Insights": "Dive deeper into Indian culture, traditions, festivals, and customs with articles that help you understand and appreciate the rich cultural tapestry of India.",
     "Local Experiences": "Discover authentic, off-the-beaten-path experiences and activities recommended by our local companions across various destinations in India.",

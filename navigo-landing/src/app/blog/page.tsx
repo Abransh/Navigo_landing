@@ -6,6 +6,13 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 
+// Define type for blog page props
+type BlogPageProps = {
+  searchParams?: Promise<{
+    category?: string;
+  }>;
+};
+
 export function generateMetadata() {
   return {
     title: "Navigo Blog | Travel Tips & Cultural Insights for Exploring India",
@@ -22,7 +29,7 @@ export function generateMetadata() {
     openGraph: {
       title: "Navigo Blog | Travel Tips & Cultural Insights for Exploring India",
       description: "Discover authentic travel experiences, local insights, and essential tips for traveling in India with Navigo's local companions.",
-      url: "https://navigoindia.com/blog",
+      url: "https://www.trynavigo.com/blog",
       siteName: "Navigo",
       images: [
         {
@@ -38,9 +45,12 @@ export function generateMetadata() {
   };
 }
 
-export default function BlogPage({ searchParams }) {
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  // Resolve the search params promise
+  const resolvedParams = await searchParams || {};
+  
   // Get the category from search params (if any)
-  const activeCategory = searchParams?.category || "";
+  const activeCategory = resolvedParams.category || "";
   
   // Get all unique categories for the filter
   const categories = Array.from(
