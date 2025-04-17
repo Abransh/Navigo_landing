@@ -7,7 +7,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'essential-travel-tips-india',
     title: '10 Essential Travel Tips for First-Time Visitors to India',
     excerpt: 'Planning your first trip to India? Here are the essential tips every traveler should know before embarking on their journey to this vibrant and diverse country.',
-    coverImage: '/images/blog/india-travel-tips.jpg',
+    coverImage: '/images/CompanionAtLocalSpot.png',
     date: 'April 5, 2025',
     readTime: '8 min read',
     author: {
@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'hidden-gems-delhi',
     title: 'Hidden Gems in Delhi: Beyond the Tourist Trail',
     excerpt: 'Discover the lesser-known attractions and authentic experiences in Delhi that most tourists never find. Our local companions share their favorite hidden spots.',
-    coverImage: '/images/blog/delhi-hidden-gems.jpg',
+    coverImage: '/images/NewDelhi.jpg',
     date: 'March 22, 2025',
     readTime: '6 min read',
     author: {
@@ -78,7 +78,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'india-safe-solo-female-travelers',
     title: 'Is India Safe for Solo Female Travelers? My Journey',
     excerpt: "I've always believed that travel is the ultimate teacher — yet, as a solo female traveler, the question of safety can feel like a heavy weight on your mind.",
-    coverImage: '/images/blog/solo-female-travel.jpg',
+    coverImage: '/images/foriengerwithIndians.jpg',
     date: 'April 11, 2025',
     readTime: '5 min read',
     author: {
@@ -98,7 +98,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'essential-travel-tips-india',
     title: '10 Essential Travel Tips for First-Time Visitors to India',
     excerpt: 'Planning your first trip to India? Here are the essential tips every traveler should know before embarking on their journey to this vibrant and diverse country.',
-    coverImage: '/images/blog/india-travel-tips.jpg',
+    coverImage: '/images/Varanasi1.jpg',
     date: 'April 5, 2025',
     readTime: '8 min read',
     author: {

@@ -97,16 +97,6 @@ export default async function AuthorPage({ params }: AuthorPageParams) {
         
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center text-center">
-            <div className="w-24 h-24 rounded-full overflow-hidden relative mb-4">
-              <Image
-                src={author.avatar}
-                alt={author.name}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            
             <h1 className="text-3xl md:text-4xl font-heading font-bold text-white mb-2">
               {author.name}
             </h1>

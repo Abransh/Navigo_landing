@@ -187,14 +187,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 <p className="text-foreground-muted mb-6">{featuredPost.excerpt}</p>
                 
                 <div className="flex items-center mt-auto">
-                  <div className="w-10 h-10 rounded-full overflow-hidden relative mr-3">
-                    <Image
-                      src={featuredPost.author.avatar}
-                      alt={featuredPost.author.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
                   <div>
                     <p className="font-medium text-navy">{featuredPost.author.name}</p>
                     <div className="flex items-center text-xs text-foreground-muted">
@@ -258,19 +250,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                     </p>
                     
                     <div className="flex items-center justify-between mt-auto">
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 rounded-full overflow-hidden relative mr-2">
-                          <Image
-                            src={post.author.avatar}
-                            alt={post.author.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-navy">{post.author.name}</p>
-                        </div>
-                      </div>
+                      <div className="text-sm font-medium text-navy">{post.author.name}</div>
                       
                       <div className="flex items-center text-xs text-foreground-muted">
                         <Calendar className="w-3 h-3 mr-1" />
