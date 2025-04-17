@@ -46,7 +46,7 @@ export default function Home() {
         </div>
       </div>
       <HowItWorksSection />
-      <WhyNavigoSection />
+    
       <WhyNavigoIntegration />
       
       {/* Decorative element - wave pattern */}
@@ -107,6 +107,7 @@ export default function Home() {
       </div>
       
       <FAQSection />
+      
       <Footer />
     </main>
   );

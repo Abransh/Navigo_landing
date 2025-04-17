@@ -1,138 +1,181 @@
-/* Speech bubble styles */
+/* Speech bubble enhanced styles */
 
 .speech-bubble {
-    position: relative;
-    border-radius: 1rem;
-    padding: 1rem;
-    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
-    max-width: 280px;
-    z-index: 30;
-    animation: bubble-appear 0.5s ease-out forwards;
-    transform-origin: bottom center;
+  position: relative;
+  border-radius: 1rem;
+  padding: 1rem;
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+  max-width: 280px;
+  z-index: 30;
+  animation: bubble-appear 0.5s ease-out forwards;
+  transform-origin: bottom center;
+}
+
+.speech-bubble-right {
+  background-color: #FFF8EA;
+  border: 2px solid #BE5504;
+  margin-left: auto;
+}
+
+.speech-bubble-left {
+  background-color: white;
+  border: 2px solid #1A5F7A;
+  margin-right: auto;
+}
+
+/* Bubble tails */
+.speech-bubble-right::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #FFF8EA transparent;
+  display: block;
+  width: 0;
+  filter: drop-shadow(0 2px 0 #BE5504);
+}
+
+.speech-bubble-left::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: white transparent;
+  display: block;
+  width: 0;
+  filter: drop-shadow(0 2px 0 #1A5F7A);
+}
+
+/* Animations */
+@keyframes bubble-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(20px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes bubble-exit {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    opacity: 0.5;
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7) translateY(20px);
+  }
+}
+
+/* Typewriter effect class */
+.typewriter-text {
+  overflow: hidden;
+  border-right: 3px solid #1A5F7A;
+  white-space: nowrap;
+  margin: 0;
+  letter-spacing: .15em;
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #1A5F7A; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .speech-bubble {
+    max-width: 240px;
+    padding: 0.75rem;
   }
   
-  .speech-bubble-right {
-    background-color: #FFF8EA;
-    border: 2px solid #BE5504;
-  }
-  
-  .speech-bubble-left {
-    background-color: white;
-    border: 2px solid #1A5F7A;
-  }
-  
-  /* Bubble tails */
-  .speech-bubble-right::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    right: 20px;
-    border-width: 10px 10px 0;
-    border-style: solid;
-    border-color: #FFF8EA transparent;
-    display: block;
-    width: 0;
-    filter: drop-shadow(0 2px 0 #BE5504);
-  }
-  
-  .speech-bubble-left::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 20px;
-    border-width: 10px 10px 0;
-    border-style: solid;
-    border-color: white transparent;
-    display: block;
-    width: 0;
-    filter: drop-shadow(0 2px 0 #1A5F7A);
-  }
-  
-  /* Text animation */
   .speech-bubble p {
-    overflow: hidden;
-    margin: 0;
-    color: #0A2342;
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 0.875rem;
   }
-  
-  @keyframes typewriter {
-    from { width: 0; }
-    to { width: 100%; }
+}
+
+/* Character container animations */
+.character-enter {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.character-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.character-exit {
+  opacity: 1;
+}
+
+.character-exit-active {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Fade transitions */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1A5F7A;
+  opacity: 0.8;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
   }
-  
-  /* Animations */
-  @keyframes bubble-appear {
-    0% {
-      opacity: 0;
-      transform: scale(0.7) translateY(20px);
-    }
-    70% {
-      opacity: 1;
-      transform: scale(1.05) translateY(-5px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
+  40% {
+    transform: translateY(-20px);
   }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    .speech-bubble {
-      max-width: 240px;
-      padding: 0.75rem;
-    }
-    
-    .speech-bubble p {
-      font-size: 0.875rem;
-    }
+  60% {
+    transform: translateY(-10px);
   }
-  
-  /* Character container animations */
-  .character-container {
-    position: relative;
-    height: 300px;
-    width: 300px;
-    transition: all 0.5s ease-out;
-  }
-  
-  .character-enter {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  
-  .character-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 500ms, transform 500ms;
-  }
-  
-  .character-exit {
-    opacity: 1;
-  }
-  
-  .character-exit-active {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 300ms, transform 300ms;
-  }
-  
-  /* For Priya (right side) */
-  .character-priya-enter {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  
-  .character-priya-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 500ms, transform 500ms;
-  }
-  
-  .character-priya-exit-active {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 300ms, transform 300ms;
-  }
+}
