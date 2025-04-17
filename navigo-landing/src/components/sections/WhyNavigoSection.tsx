@@ -83,78 +83,54 @@ const SpeechBubble: React.FC<SpeechBubbleProps> = ({
   delay = 0
 }) => {
   const textRef = useRef<HTMLParagraphElement>(null);
+  const [typedText, setTypedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const typingRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Simple typewriter effect with React state
   useEffect(() => {
-    if (isVisible && textRef.current) {
+    if (isVisible && text) {
+      setTypedText(""); // Reset text
       setIsTyping(true);
-      const textElement = textRef.current;
-      const textContent = text;
       
-      // Clear current text
-      textElement.textContent = '';
-      
-      // Create simple typewriter effect
       let i = 0;
-      const speed = Math.min(40, 1000 / textContent.length); // Adjust speed based on text length
+      const typeSpeed = 30; // ms per character
       
       const typeWriter = () => {
-        if (i < textContent.length) {
-          textElement.textContent += textContent.charAt(i);
+        if (i < text.length) {
+          setTypedText(prev => prev + text.charAt(i));
           i++;
-          typingRef.current = setTimeout(typeWriter, speed);
+          setTimeout(typeWriter, typeSpeed);
         } else {
           setIsTyping(false);
         }
       };
       
-      // Start typing effect with a small delay
-      const startDelay = setTimeout(() => {
-        typeWriter();
-      }, 300 + delay);
+      // Start typing after a short delay
+      const timer = setTimeout(typeWriter, 300);
       
       return () => {
-        clearTimeout(startDelay);
-        if (typingRef.current) {
-          clearTimeout(typingRef.current);
-        }
+        clearTimeout(timer);
       };
     }
-    return () => {
-      if (typingRef.current) {
-        clearTimeout(typingRef.current);
-      }
-    };
-  }, [isVisible, text, delay]);
+  }, [isVisible, text]);
 
-  const positionClasses = position === 'left' 
-    ? 'left-4 md:left-16' 
-    : 'right-4 md:right-16';
+  const bubbleClass = position === 'left' ? 'speech-bubble-left' : 'speech-bubble-right';
 
   return (
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
-          className={`absolute top-8 max-w-[260px] md:max-w-xs ${positionClasses} ${bubbleColor} rounded-xl p-4 shadow-md border z-30`}
+          className={`absolute ${position === 'left' ? 'left-8 md:left-24' : 'right-8 md:right-24'} top-4 
+            w-64 md:w-80 ${bubbleColor} rounded-xl p-4 shadow-md border z-30 ${bubbleClass}`}
           initial={{ opacity: 0, y: -20, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
           transition={{ duration: 0.4, delay: delay * 0.1 }}
         >
-          <p ref={textRef} className="text-navy text-sm md:text-base min-h-[2.5rem]"></p>
-          
-          {/* Cursor while typing */}
-          {isTyping && (
-            <span className="inline-block w-[2px] h-[14px] bg-primary ml-[1px] animate-pulse"></span>
-          )}
-          
-          {/* Speech bubble tail */}
-          <div 
-            className={`absolute -bottom-4 ${bubbleColor} w-8 h-8 border transform rotate-45 ${
-              position === 'left' ? 'left-5' : 'right-5'
-            }`}
-          ></div>
+          <p ref={textRef} className="text-navy text-sm md:text-base min-h-[3.5rem]">
+            {typedText}
+            {isTyping && <span className="inline-block w-[2px] h-[14px] bg-primary ml-[1px] animate-pulse"></span>}
+          </p>
         </motion.div>
       )}
     </AnimatePresence>
@@ -164,11 +140,22 @@ const SpeechBubble: React.FC<SpeechBubbleProps> = ({
 // Main component
 export default function WhyNavigoSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const isMobile = useMobile();
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollHeight, setScrollHeight] = useState(0);
 
-  // Function to handle scroll for desktop
+  // Calculate and set section height for proper stickiness
+  useEffect(() => {
+    if (sectionRef.current) {
+      // Set section height based on number of steps (one viewport height per step)
+      const totalHeight = window.innerHeight * conversationSteps.length;
+      setScrollHeight(totalHeight);
+      sectionRef.current.style.height = `${totalHeight}px`;
+    }
+  }, []);
+
+  // Handle scroll-based step transitions
   useEffect(() => {
     if (typeof window === 'undefined' || isMobile) return;
 
@@ -176,43 +163,31 @@ export default function WhyNavigoSection() {
       if (!sectionRef.current) return;
       
       const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const sectionTop = rect.top;
-      const sectionHeight = rect.height;
+      const scrollProgress = -rect.top / (scrollHeight - window.innerHeight);
       
-      // Calculate visible portion of the section
-      const visibleHeight = Math.min(
-        windowHeight - Math.max(0, sectionTop),
-        sectionHeight
+      // Calculate which step we're on based on scroll position
+      const newStep = Math.min(
+        Math.floor(scrollProgress * conversationSteps.length),
+        conversationSteps.length - 1
       );
       
-      // Calculate scroll progress (0 to 1)
-      const scrollProgress = Math.min(
-        Math.max(0, -sectionTop / (sectionHeight - windowHeight)),
-        1
-      );
-      
-      // Calculate step based on scroll progress
-      const stepIndex = Math.floor(scrollProgress * (conversationSteps.length - 1));
-      
-      if (stepIndex >= 0 && stepIndex < conversationSteps.length && stepIndex !== activeStep) {
-        setActiveStep(stepIndex);
+      // Only update if necessary to avoid re-renders
+      if (newStep >= 0 && newStep !== activeStep) {
+        setActiveStep(newStep);
       }
     };
     
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
     
     // Initial check
     handleScroll();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
     };
-  }, [isMobile, activeStep]);
+  }, [isMobile, activeStep, scrollHeight]);
 
-  // Simple step navigation for mobile with bounds checking
+  // Simple step navigation for mobile
   const handleNextStep = () => {
     if (activeStep < conversationSteps.length - 1) {
       setActiveStep(prev => Math.min(prev + 1, conversationSteps.length - 1));
@@ -225,10 +200,8 @@ export default function WhyNavigoSection() {
     }
   };
 
-  // Get current character image with safety check
+  // Get current character SVG
   const getCurrentCharacterSvg = (character: string) => {
-    if (!character) return '/Sarah-talking.svg'; // Default fallback
-    
     if (character === 'sarah-talking') {
       return '/Sarah-talking.svg';
     } else if (character === 'sarah-anxious') {
@@ -236,136 +209,190 @@ export default function WhyNavigoSection() {
     } else if (character === 'sarah-happy') {
       return '/Sarah-happy-again-after-priya.svg';
     } else if (character.includes('priya')) {
-      return '/placeholder-priya.svg';
+      return '/priya-placeholder.svg';
     }
     
     return '/Sarah-talking.svg'; // Default fallback
   };
 
-  // Safety check for current step
+  // Generate Priya placeholder SVG if needed
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Check if the Priya SVG exists
+    const priyaImage = document.createElement('img') as HTMLImageElement;
+    priyaImage.src = '/priya-placeholder.svg';
+    priyaImage.onerror = () => {
+      console.info("Priya placeholder SVG is missing");
+    };
+  }, []);
+
+  // Current step and character checks
   const currentStep = conversationSteps[activeStep] || conversationSteps[0];
+  const isCurrentStepSarah = !currentStep.character.includes('priya');
+  const isCurrentStepPriya = currentStep.character.includes('priya');
 
   return (
     <section 
       id="why-navigo" 
-      className="sticky top-0 min-h-[800vh] bg-white overflow-hidden" 
+      className="relative bg-white"
       ref={sectionRef}
+      style={{ height: `${scrollHeight}px` }} // Ensure enough scroll height
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-        <div className="w-full h-full bg-gradient-to-b from-primary/5 to-transparent"></div>
-        {/* India-inspired pattern overlay */}
-        <div className="absolute inset-0 opacity-20" style={{ 
-          backgroundImage: 'url("/india-pattern-bg.svg")', 
-          backgroundSize: '400px',
-          backgroundRepeat: 'repeat'
-        }}></div>
-      </div>
-      
-      {/* Section Title - sticky for better UX */}
-      <div className="sticky top-0 py-10 bg-white/95 backdrop-blur-sm z-10">
-        <div className="text-center">
-          <SectionTitle title="Why Navigo?" subtitle="Experience India with a friend by your side" />
+      {/* Sticky container - this is what stays fixed while scrolling */}
+      <div 
+        ref={containerRef}
+        className="sticky top-0 left-0 right-0 h-screen overflow-hidden"
+      >
+        {/* Background pattern */}
+        <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+          <div className="w-full h-full bg-gradient-to-b from-primary/5 to-transparent"></div>
+          {/* India-inspired pattern overlay */}
+          <div className="absolute inset-0 opacity-20" style={{ 
+            backgroundImage: 'url("/images/indian-pattern.svg")', 
+            backgroundSize: '400px',
+            backgroundRepeat: 'repeat'
+          }}></div>
         </div>
-      </div>
-
-      {/* Main content container - sticky */}
-      <div className="sticky top-[200px] h-[70vh] flex items-center justify-center z-20">
-        {/* Character container - Sarah */}
-        <div className="absolute left-1/4 transform -translate-x-1/2">
-          <AnimatePresence mode="wait">
-            {!currentStep.character.includes('priya') && (
-              <motion.div
-                key={currentStep.character}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-                className="relative z-20"
-              >
-                <Image
-                  src={getCurrentCharacterSvg(currentStep.character)}
-                  alt={currentStep.character}
-                  width={200}
-                  height={200}
-                  className="w-40 h-40 md:w-48 md:h-48"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
+        
+        {/* Section Title */}
+        <div className="py-10 bg-white/95 backdrop-blur-sm z-10">
+          <div className="text-center">
+            <SectionTitle title="Why Navigo?" subtitle="Experience India with a friend by your side" />
+          </div>
         </div>
 
-        {/* Speech bubble container */}
-        <div className="absolute right-1/4 transform translate-x-1/2">
-          <SpeechBubble
-            text={currentStep.text}
-            isVisible={true}
-            position={currentStep.bubblePosition}
-            bubbleColor={currentStep.bubbleColor}
-            delay={0.2}
-          />
-        </div>
-
-        {/* Priya character (when active) */}
-        {currentStep.character.includes('priya') && (
-          <div className="absolute right-1/4 transform translate-x-1/2">
+        {/* Conversation container */}
+        <div className="flex-1 flex items-center justify-center relative h-[calc(100vh-12rem)]">
+          {/* Sarah container - left side */}
+          <div className="absolute left-0 w-1/2 h-full flex items-center justify-end">
             <AnimatePresence mode="wait">
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 50 }}
-                transition={{ duration: 0.5 }}
-                className="relative z-20"
-              >
-                <Image
-                  src="/placeholder-priya.svg"
-                  alt="Priya"
-                  width={200}
-                  height={200}
-                  className="w-40 h-40 md:w-48 md:h-48"
-                />
-              </motion.div>
+              {isCurrentStepSarah && (
+                <motion.div
+                  key={`sarah-${currentStep.id}`}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative z-20 mr-8 md:mr-16"
+                >
+                  <div className="relative">
+                    <Image
+                      src={getCurrentCharacterSvg(currentStep.character)}
+                      alt="Sarah"
+                      width={300}
+                      height={300}
+                      className="w-44 h-44 md:w-64 md:h-64 object-contain"
+                    />
+                    
+                    {/* Sarah's speech bubble */}
+                    {isCurrentStepSarah && (
+                      <SpeechBubble
+                        text={currentStep.text}
+                        isVisible={true}
+                        position="right"
+                        bubbleColor={currentStep.bubbleColor}
+                        delay={0.2}
+                      />
+                    )}
+                  </div>
+                </motion.div>
+              )}
             </AnimatePresence>
+          </div>
+          
+          {/* Priya container - right side */}
+          <div className="absolute right-0 w-1/2 h-full flex items-center justify-start">
+            <AnimatePresence mode="wait">
+              {isCurrentStepPriya && (
+                <motion.div
+                  key={`priya-${currentStep.id}`}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 50 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative z-20 ml-8 md:ml-16"
+                >
+                  <div className="relative">
+                    <Image
+                      src={getCurrentCharacterSvg(currentStep.character)}
+                      alt="Priya"
+                      width={300}
+                      height={300}
+                      className="w-44 h-44 md:w-64 md:h-64 object-contain"
+                    />
+                    
+                    {/* Priya's speech bubble */}
+                    {isCurrentStepPriya && (
+                      <SpeechBubble
+                        text={currentStep.text}
+                        isVisible={true}
+                        position="left"
+                        bubbleColor={currentStep.bubbleColor}
+                        delay={0.2}
+                      />
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          
+          {/* Center element - decorative connection */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 opacity-20">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="30" fill="none" stroke="#BE5504" strokeWidth="1" />
+              <circle cx="32" cy="32" r="20" fill="none" stroke="#BE5504" strokeWidth="1" />
+              <circle cx="32" cy="32" r="10" fill="none" stroke="#BE5504" strokeWidth="1" />
+              <path d="M32,2 L32,62 M2,32 L62,32" stroke="#BE5504" strokeWidth="1" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Scroll indicator on first step */}
+        {activeStep === 0 && !isMobile && (
+          <motion.div 
+            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-primary z-30"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+          >
+            <p className="mb-2 text-sm font-medium">Scroll down to continue the story</p>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </motion.div>
+        )}
+
+        {/* Progress indicators */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {conversationSteps.map((_, index) => (
+            <div 
+              key={index} 
+              className={`w-2 h-2 rounded-full ${index === activeStep ? 'bg-primary' : 'bg-primary/30'}`}
+            />
+          ))}
+        </div>
+
+        {/* Mobile navigation */}
+        {isMobile && (
+          <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4 z-30">
+            <button
+              onClick={handlePrevStep}
+              disabled={activeStep === 0}
+              className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <button
+              onClick={handleNextStep}
+              disabled={activeStep === conversationSteps.length - 1}
+              className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50"
+            >
+              Next
+            </button>
           </div>
         )}
       </div>
-
-      {/* Scroll indicator */}
-      {activeStep === 0 && (
-        <motion.div 
-          className="fixed bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-primary z-30"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-        >
-          <p className="mb-2 text-sm font-medium">Scroll down to continue the story</p>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-      )}
-
-      {/* Mobile navigation */}
-      {isMobile && (
-        <div className="fixed bottom-4 left-0 right-0 flex justify-center gap-4 z-30">
-          <button
-            onClick={handlePrevStep}
-            disabled={activeStep === 0}
-            className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <button
-            onClick={handleNextStep}
-            disabled={activeStep === conversationSteps.length - 1}
-            className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
-      )}
-
-      {/* Empty space for scroll detection */}
-      <div className="h-[700vh]"></div>
     </section>
   );
 }

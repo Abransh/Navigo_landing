@@ -1,4 +1,4 @@
-/* Speech bubble enhanced styles */
+/* Enhanced speech bubble styles with proper positioning and animations */
 
 .speech-bubble {
   position: relative;
@@ -23,7 +23,7 @@
   margin-right: auto;
 }
 
-/* Bubble tails */
+/* Bubble tails - positioned correctly */
 .speech-bubble-right::after {
   content: '';
   position: absolute;
@@ -34,7 +34,20 @@
   border-color: #FFF8EA transparent;
   display: block;
   width: 0;
-  filter: drop-shadow(0 2px 0 #BE5504);
+  z-index: -1;
+}
+
+.speech-bubble-right::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  right: 18px;
+  border-width: 12px 12px 0;
+  border-style: solid;
+  border-color: #BE5504 transparent;
+  display: block;
+  width: 0;
+  z-index: -2;
 }
 
 .speech-bubble-left::after {
@@ -47,10 +60,23 @@
   border-color: white transparent;
   display: block;
   width: 0;
-  filter: drop-shadow(0 2px 0 #1A5F7A);
+  z-index: -1;
 }
 
-/* Animations */
+.speech-bubble-left::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 18px;
+  border-width: 12px 12px 0;
+  border-style: solid;
+  border-color: #1A5F7A transparent;
+  display: block;
+  width: 0;
+  z-index: -2;
+}
+
+/* Enhanced animations */
 @keyframes bubble-appear {
   0% {
     opacity: 0;
@@ -81,101 +107,133 @@
   }
 }
 
-/* Typewriter effect class */
-.typewriter-text {
-  overflow: hidden;
-  border-right: 3px solid #1A5F7A;
-  white-space: nowrap;
+/* Make bubbles visible */
+.speech-bubble-right, .speech-bubble-left {
+  opacity: 1 !important;
+  position: absolute;
+  min-width: 200px;
+}
+
+/* Ensure text is visible */
+.speech-bubble-right p, .speech-bubble-left p {
+  color: #0A2342;
+  min-height: 2.5rem;
   margin: 0;
-  letter-spacing: .15em;
-  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+  padding: 0;
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+/* Fix spacing and positioning */
+.speech-bubble-right {
+  top: -60px;
+  right: -220px;
 }
 
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: #1A5F7A; }
+.speech-bubble-left {
+  top: -60px;
+  left: -220px;
+}
+
+/* Character animations */
+@keyframes character-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes character-fade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+.character-enter {
+  animation: character-fade-in 0.5s ease forwards;
+}
+
+.character-exit {
+  animation: character-fade-out 0.3s ease forwards;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .speech-bubble {
-    max-width: 240px;
+    max-width: 220px;
     padding: 0.75rem;
+    min-width: 160px;
   }
   
   .speech-bubble p {
     font-size: 0.875rem;
   }
-}
-
-/* Character container animations */
-.character-enter {
-  opacity: 0;
-  transform: translateX(-50px);
-}
-
-.character-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 500ms, transform 500ms;
-}
-
-.character-exit {
-  opacity: 1;
-}
-
-.character-exit-active {
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 300ms, transform 300ms;
-}
-
-/* Fade transitions */
-.fade-enter {
-  opacity: 0;
-}
-
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 500ms;
-}
-
-.fade-exit {
-  opacity: 1;
-}
-
-.fade-exit-active {
-  opacity: 0;
-  transition: opacity 300ms;
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #1A5F7A;
-  opacity: 0.8;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+  
+  .speech-bubble-right {
+    top: -50px;
+    right: -180px;
   }
-  40% {
-    transform: translateY(-20px);
+  
+  .speech-bubble-left {
+    top: -50px;
+    left: -180px;
   }
-  60% {
-    transform: translateY(-10px);
+}
+
+/* Progress indicator dots */
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.progress-dot-active {
+  background-color: #1A5F7A;
+  transform: scale(1.2);
+}
+
+.progress-dot-inactive {
+  background-color: rgba(26, 95, 122, 0.3);
+}
+
+/* Ensure proper typing cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: #1A5F7A;
+  animation: cursor-blink 0.8s infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+@keyframes cursor-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Force animation to work properly in all browsers */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }

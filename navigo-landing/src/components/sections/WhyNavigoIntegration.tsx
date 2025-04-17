@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { ArrowDownCircle } from 'lucide-react';
 
 // Dynamically import the WhyNavigo component to avoid SSR issues
 const WhyNavigoSection = dynamic(
@@ -16,7 +17,7 @@ const WhyNavigoSection = dynamic(
 // Fallback loading component shown while the main component loads
 const WhyNavigoSectionFallback = () => {
   return (
-    <div className="min-h-[60vh] bg-white py-20">
+    <div className="min-h-screen bg-white py-20">
       <div className="sticky top-0 py-10 bg-white/95 backdrop-blur-sm z-20">
         <div className="text-center">
           <SectionTitle title="Why Navigo?" subtitle="Experience India with a friend by your side" />
@@ -37,8 +38,9 @@ const WhyNavigoSectionFallback = () => {
             <div className="h-20 bg-white/70 rounded-xl w-4/5 self-start"></div>
           </div>
           
-          <div className="text-center text-primary/70 font-medium">
-            Loading interactive experience...
+          <div className="text-center text-primary/70 font-medium pt-6">
+            <p className="mb-2">Loading interactive experience...</p>
+            <ArrowDownCircle className="mx-auto animate-bounce h-6 w-6 text-primary" />
           </div>
         </div>
       </div>
@@ -46,23 +48,39 @@ const WhyNavigoSectionFallback = () => {
   );
 };
 
-// Create a simple placeholder SVG in the public directory if it doesn't exist
-const createPlaceholderSvg = () => {
+// Create a Priya placeholder SVG in the public directory
+const createPriyaPlaceholderSvg = () => {
   if (typeof window === 'undefined') return;
   
-  // Simple check if we're in a browser environment where we might need this
   try {
-    // Create a simple SVG string
-    const svgContent = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
-        <circle cx="150" cy="150" r="80" fill="#1A5F7A" fill-opacity="0.2"/>
-        <text x="150" y="150" font-family="Arial" font-size="24" fill="#1A5F7A" text-anchor="middle" dominant-baseline="middle">Priya</text>
-        <text x="150" y="180" font-family="Arial" font-size="16" fill="#1A5F7A" text-anchor="middle" dominant-baseline="middle">Local Companion</text>
-      </svg>
-    `;
+    // Create SVG content
+    const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+      <circle cx="150" cy="150" r="120" fill="#1A5F7A" fill-opacity="0.2"/>
+      <circle cx="150" cy="150" r="80" fill="#1A5F7A" fill-opacity="0.3"/>
+      <circle cx="150" cy="110" r="40" fill="#1A5F7A" fill-opacity="0.5"/>
+      <text x="150" y="190" font-family="Arial" font-size="24" fill="#1A5F7A" text-anchor="middle" dominant-baseline="middle">Priya</text>
+      <text x="150" y="220" font-family="Arial" font-size="16" fill="#1A5F7A" text-anchor="middle" dominant-baseline="middle">Local Companion</text>
+    </svg>`;
     
-    // We're not actually storing this file, just checking if the feature might be needed
-    console.info("Placeholder SVG for Priya would be created in a real environment");
+    // Check if placeholder exists and create it if needed
+    // In a browser environment we can't actually write files, but we can create a Blob URL
+    const priyaImage = new Image();
+    priyaImage.src = '/priya-placeholder.svg';
+    priyaImage.onerror = () => {
+      // Create a blob URL
+      const blob = new Blob([svgContent], {type: 'image/svg+xml'});
+      const url = URL.createObjectURL(blob);
+      
+      // Log the URL for debugging
+      console.info("Created Priya placeholder SVG blob URL:", url);
+      
+      // Optionally can be used for download in dev environments
+      // const link = document.createElement('a');
+      // link.href = url;
+      // link.download = 'priya-placeholder.svg';
+      // link.click();
+      // URL.revokeObjectURL(url);
+    };
   } catch (error) {
     console.warn("Browser doesn't support SVG creation", error);
   }
@@ -70,7 +88,7 @@ const createPlaceholderSvg = () => {
 
 // Main integration component
 export default function WhyNavigoIntegration() {
-  const [imagesPreloaded, setImagesPreloaded] = useState(false);
+  const [assetsReady, setAssetsReady] = useState(false);
   
   useEffect(() => {
     // Create array of image paths to preload
@@ -78,10 +96,12 @@ export default function WhyNavigoIntegration() {
       '/Sarah-talking.svg',
       '/Sarah-anxious.svg',
       '/Sarah-happy-again-after-priya.svg',
-      '/placeholder-priya.svg',
-      // Include a fallback path to the india pattern
-      '/india-pattern-bg.svg'
+      '/priya-placeholder.svg',
+      '/images/indian-pattern.svg'
     ];
+    
+    // Try to create Priya placeholder
+    createPriyaPlaceholderSvg();
     
     // Function to preload a single image
     const preloadImage = (src: string) => {
@@ -99,27 +119,42 @@ export default function WhyNavigoIntegration() {
     // Preload all images
     const preloadAll = async () => {
       try {
-        // Try to create placeholder SVG in case it's needed
-        createPlaceholderSvg();
-        
-        // Preload all images in parallel
         await Promise.all(imagesToPreload.map(preloadImage));
-        setImagesPreloaded(true);
+        setAssetsReady(true);
       } catch (error) {
         console.error('Error preloading images:', error);
         // Set as loaded anyway to not block the UI
-        setImagesPreloaded(true);
+        setAssetsReady(true);
       }
     };
     
+    // Load GSAP if needed
+    const loadGSAP = () => {
+      try {
+        // Check if we need to dynamically import GSAP
+        if (typeof window !== 'undefined' && !window.gsap) {
+          // In a real project, we'd load GSAP from CDN if needed
+          console.info("GSAP would be loaded if not already available");
+        }
+      } catch (error) {
+        console.warn("Error checking for GSAP:", error);
+      }
+    };
+    
+    // Initialize everything
+    loadGSAP();
     preloadAll();
     
-    // Clean up function if needed
+    // Set a timeout to ensure we don't block indefinitely
+    const timeout = setTimeout(() => {
+      setAssetsReady(true);
+    }, 3000);
+    
     return () => {
-      // Any cleanup here
+      clearTimeout(timeout);
     };
   }, []);
   
   // Render the component or fallback based on loading status
-  return imagesPreloaded ? <WhyNavigoSection /> : <WhyNavigoSectionFallback />;
+  return assetsReady ? <WhyNavigoSection /> : <WhyNavigoSectionFallback />;
 }
