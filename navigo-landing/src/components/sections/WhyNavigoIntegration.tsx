@@ -132,7 +132,7 @@ export default function WhyNavigoIntegration() {
     const loadGSAP = () => {
       try {
         // Check if we need to dynamically import GSAP
-        if (typeof window !== 'undefined' && !window.gsap) {
+        if (typeof window !== 'undefined' && typeof (window as any).gsap === 'undefined') {
           // In a real project, we'd load GSAP from CDN if needed
           console.info("GSAP would be loaded if not already available");
         }

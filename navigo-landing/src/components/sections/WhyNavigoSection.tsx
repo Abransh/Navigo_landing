@@ -73,6 +73,7 @@ interface SpeechBubbleProps {
   position: 'left' | 'right';
   bubbleColor: string;
   delay?: number;
+  className?: string;
 }
 
 const SpeechBubble: React.FC<SpeechBubbleProps> = ({
@@ -80,7 +81,8 @@ const SpeechBubble: React.FC<SpeechBubbleProps> = ({
   isVisible,
   position,
   bubbleColor,
-  delay = 0
+  delay = 0,
+  className
 }) => {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [typedText, setTypedText] = useState("");
@@ -120,8 +122,8 @@ const SpeechBubble: React.FC<SpeechBubbleProps> = ({
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
-          className={`absolute ${position === 'left' ? 'left-8 md:left-24' : 'right-8 md:right-24'} top-4 
-            w-64 md:w-80 ${bubbleColor} rounded-xl p-4 shadow-md border z-30 ${bubbleClass}`}
+          className={`absolute ${position === 'left' ? 'left-8 md:left-24' : 'right-8 md:right-28'} top-4 
+            w-64 md:w-80 ${bubbleColor} rounded-xl p-4 shadow-md border z-30 ${bubbleClass} ${className}`}
           initial={{ opacity: 0, y: -20, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
@@ -256,14 +258,14 @@ export default function WhyNavigoSection() {
         </div>
         
         {/* Section Title */}
-        <div className="py-10 bg-white/95 backdrop-blur-sm z-10">
+        <div className="py-6 bg-white/95 backdrop-blur-sm z-10">
           <div className="text-center">
             <SectionTitle title="Why Navigo?" subtitle="Experience India with a friend by your side" />
           </div>
         </div>
 
         {/* Conversation container */}
-        <div className="flex-1 flex items-center justify-center relative h-[calc(100vh-12rem)]">
+        <div className="flex-1 flex items-center justify-center relative h-[calc(100vh-8rem)]">
           {/* Sarah container - left side */}
           <div className="absolute left-0 w-1/2 h-full flex items-center justify-end">
             <AnimatePresence mode="wait">
@@ -274,7 +276,7 @@ export default function WhyNavigoSection() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.5 }}
-                  className="relative z-20 mr-8 md:mr-16"
+                  className="relative z-20 mr-12 md:mr-24 mt-40"
                 >
                   <div className="relative">
                     <Image
@@ -293,6 +295,7 @@ export default function WhyNavigoSection() {
                         position="right"
                         bubbleColor={currentStep.bubbleColor}
                         delay={0.2}
+                        className="right-16 md:right-24 top-[-2rem]"
                       />
                     )}
                   </div>

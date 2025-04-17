@@ -66,7 +66,7 @@ var conversationSteps = [
     },
 ];
 var SpeechBubble = function (_a) {
-    var text = _a.text, isVisible = _a.isVisible, position = _a.position, bubbleColor = _a.bubbleColor, _b = _a.delay, delay = _b === void 0 ? 0 : _b;
+    var text = _a.text, isVisible = _a.isVisible, position = _a.position, bubbleColor = _a.bubbleColor, _b = _a.delay, delay = _b === void 0 ? 0 : _b, className = _a.className;
     var textRef = react_1.useRef(null);
     var _c = react_1.useState(""), typedText = _c[0], setTypedText = _c[1];
     var _d = react_1.useState(false), isTyping = _d[0], setIsTyping = _d[1];
@@ -95,7 +95,7 @@ var SpeechBubble = function (_a) {
         }
     }, [isVisible, text]);
     var bubbleClass = position === 'left' ? 'speech-bubble-left' : 'speech-bubble-right';
-    return (react_1["default"].createElement(framer_motion_1.AnimatePresence, { mode: "wait" }, isVisible && (react_1["default"].createElement(framer_motion_1.motion.div, { className: "absolute " + (position === 'left' ? 'left-8 md:left-24' : 'right-8 md:right-24') + " top-4 \n            w-64 md:w-80 " + bubbleColor + " rounded-xl p-4 shadow-md border z-30 " + bubbleClass, initial: { opacity: 0, y: -20, scale: 0.8 }, animate: { opacity: 1, y: 0, scale: 1 }, exit: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } }, transition: { duration: 0.4, delay: delay * 0.1 } },
+    return (react_1["default"].createElement(framer_motion_1.AnimatePresence, { mode: "wait" }, isVisible && (react_1["default"].createElement(framer_motion_1.motion.div, { className: "absolute " + (position === 'left' ? 'left-8 md:left-24' : 'right-8 md:right-28') + " top-4 \n            w-64 md:w-80 " + bubbleColor + " rounded-xl p-4 shadow-md border z-30 " + bubbleClass + " " + className, initial: { opacity: 0, y: -20, scale: 0.8 }, animate: { opacity: 1, y: 0, scale: 1 }, exit: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } }, transition: { duration: 0.4, delay: delay * 0.1 } },
         react_1["default"].createElement("p", { ref: textRef, className: "text-navy text-sm md:text-base min-h-[3.5rem]" },
             typedText,
             isTyping && react_1["default"].createElement("span", { className: "inline-block w-[2px] h-[14px] bg-primary ml-[1px] animate-pulse" }))))));
@@ -190,15 +190,15 @@ function WhyNavigoSection() {
                         backgroundSize: '400px',
                         backgroundRepeat: 'repeat'
                     } })),
-            react_1["default"].createElement("div", { className: "py-10 bg-white/95 backdrop-blur-sm z-10" },
+            react_1["default"].createElement("div", { className: "py-6 bg-white/95 backdrop-blur-sm z-10" },
                 react_1["default"].createElement("div", { className: "text-center" },
                     react_1["default"].createElement(SectionTitle_1["default"], { title: "Why Navigo?", subtitle: "Experience India with a friend by your side" }))),
-            react_1["default"].createElement("div", { className: "flex-1 flex items-center justify-center relative h-[calc(100vh-12rem)]" },
+            react_1["default"].createElement("div", { className: "flex-1 flex items-center justify-center relative h-[calc(100vh-8rem)]" },
                 react_1["default"].createElement("div", { className: "absolute left-0 w-1/2 h-full flex items-center justify-end" },
-                    react_1["default"].createElement(framer_motion_1.AnimatePresence, { mode: "wait" }, isCurrentStepSarah && (react_1["default"].createElement(framer_motion_1.motion.div, { key: "sarah-" + currentStep.id, initial: { opacity: 0, x: -50 }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 }, transition: { duration: 0.5 }, className: "relative z-20 mr-8 md:mr-16" },
+                    react_1["default"].createElement(framer_motion_1.AnimatePresence, { mode: "wait" }, isCurrentStepSarah && (react_1["default"].createElement(framer_motion_1.motion.div, { key: "sarah-" + currentStep.id, initial: { opacity: 0, x: -50 }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 }, transition: { duration: 0.5 }, className: "relative z-20 mr-12 md:mr-24 mt-40" },
                         react_1["default"].createElement("div", { className: "relative" },
                             react_1["default"].createElement(image_1["default"], { src: getCurrentCharacterSvg(currentStep.character), alt: "Sarah", width: 300, height: 300, className: "w-44 h-44 md:w-64 md:h-64 object-contain" }),
-                            isCurrentStepSarah && (react_1["default"].createElement(SpeechBubble, { text: currentStep.text, isVisible: true, position: "right", bubbleColor: currentStep.bubbleColor, delay: 0.2 }))))))),
+                            isCurrentStepSarah && (react_1["default"].createElement(SpeechBubble, { text: currentStep.text, isVisible: true, position: "right", bubbleColor: currentStep.bubbleColor, delay: 0.2, className: "right-16 md:right-24 top-[-2rem]" }))))))),
                 react_1["default"].createElement("div", { className: "absolute right-0 w-1/2 h-full flex items-center justify-start" },
                     react_1["default"].createElement(framer_motion_1.AnimatePresence, { mode: "wait" }, isCurrentStepPriya && (react_1["default"].createElement(framer_motion_1.motion.div, { key: "priya-" + currentStep.id, initial: { opacity: 0, x: 50 }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: 50 }, transition: { duration: 0.5 }, className: "relative z-20 ml-8 md:ml-16" },
                         react_1["default"].createElement("div", { className: "relative" },
