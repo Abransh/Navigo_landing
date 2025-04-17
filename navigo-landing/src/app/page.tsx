@@ -5,6 +5,8 @@ import HowItWorksSection from '@/components/sections/HowItWorksSection';
 import JourneyTransformationSection from '@/components/sections/JourneyTransformationSection';
 import CoreValuesSection from '@/components/sections/CoreValuesSection';
 import InteractiveMapSection from '@/components/sections/InteractiveMapSection';
+import WhyNavigoIntegration from '@/components/sections/WhyNavigoIntegration';
+import WhyNavigoSection from '@/components/sections/WhyNavigoSection';
 import FAQSection from '@/components/sections/FAQSection';
 import Footer from '@/components/layout/Footer';
 import React from 'react';
@@ -44,6 +46,7 @@ export default function Home() {
         </div>
       </div>
       <HowItWorksSection />
+      <WhyNavigoSection />
       
       {/* Decorative element - lotus-inspired transition */}
       <div className="bg-sand py-8">
