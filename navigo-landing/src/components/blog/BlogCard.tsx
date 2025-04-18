@@ -37,7 +37,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
         </div>
       </Link>
       
-      <div className={`p-6 ${featured ? 'md:w-1/2 md:flex md:flex-col' : ''}`}>
+      <div className={`p-6 ${featured ? 'md:w-1/2 md:p-8 flex flex-col' : ''}`}>
         {featured && (
           <div className="flex flex-wrap gap-2 mb-3">
             {post.categories.map((category) => (
@@ -58,36 +58,13 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           {post.excerpt}
         </p>
         
-        <div className={`flex items-center ${featured ? 'mt-auto' : 'justify-between'}`}>
-          <div className="flex items-center">
-            <div className={`rounded-full overflow-hidden relative mr-2 ${featured ? 'w-10 h-10' : 'w-8 h-8'}`}>
-              <Image
-                src={post.author.avatar}
-                alt={post.author.name}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div>
-              <p className={`font-medium text-navy ${featured ? 'text-base' : 'text-sm'}`}>{post.author.name}</p>
-              {featured && (
-                <div className="flex items-center text-xs text-foreground-muted">
-                  <Calendar className="w-3 h-3 mr-1" />
-                  <span>{post.date}</span>
-                  <span className="mx-2">•</span>
-                  <Clock className="w-3 h-3 mr-1" />
-                  <span>{post.readTime}</span>
-                </div>
-              )}
-            </div>
-          </div>
+        <div className="flex items-center justify-between mt-auto">
+          <div className="text-sm font-medium text-navy">{post.author.name}</div>
           
-          {!featured && (
-            <div className="flex items-center text-xs text-foreground-muted">
-              <Calendar className="w-3 h-3 mr-1" />
-              <span>{post.date}</span>
-            </div>
-          )}
+          <div className="flex items-center text-xs text-foreground-muted">
+            <Calendar className="w-3 h-3 mr-1" />
+            <span>{post.date}</span>
+          </div>
         </div>
         
         {featured && (

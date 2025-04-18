@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var Navbar_1 = require("@/components/layout/Navbar");
-var HeroSectionDesktop_1 = require("@/components/sections/HeroSectionDesktop");
+var HeroIntegration_1 = require("@/components/sections/HeroIntegration");
 var FeatureBoxes_1 = require("@/components/sections/FeatureBoxes");
 var HowItWorksSection_1 = require("@/components/sections/HowItWorksSection");
 var JourneyTransformationSection_1 = require("@/components/sections/JourneyTransformationSection");
@@ -14,7 +14,7 @@ var react_1 = require("react");
 function Home() {
     return (react_1["default"].createElement("main", { className: "min-h-screen bg-[#FFF8EA]" },
         react_1["default"].createElement(Navbar_1["default"], null),
-        react_1["default"].createElement(HeroSectionDesktop_1["default"], null),
+        react_1["default"].createElement(HeroIntegration_1["default"], null),
         react_1["default"].createElement("div", { className: "bg-[#FFF8EA] py-10" },
             react_1["default"].createElement("div", { className: "max-w-7xl mx-auto px-4 py-2" },
                 react_1["default"].createElement("div", { className: "flex items-center justify-center" },

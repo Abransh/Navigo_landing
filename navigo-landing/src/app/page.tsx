@@ -1,5 +1,7 @@
 import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/sections/HeroSectionDesktop';
+import HeroIntegration from '@/components/sections/HeroIntegration';
+
 import FeatureBoxes from '@/components/sections/FeatureBoxes';
 import HowItWorksSection from '@/components/sections/HowItWorksSection';
 import JourneyTransformationSection from '@/components/sections/JourneyTransformationSection';
@@ -15,7 +17,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#FFF8EA]">
       <Navbar />
-      <HeroSection />
+      <HeroIntegration />
       <div className="bg-[#FFF8EA] py-10">
         {/* Decorative element - inspired by Indian designs */}
         <div className="max-w-7xl mx-auto px-4 py-2">

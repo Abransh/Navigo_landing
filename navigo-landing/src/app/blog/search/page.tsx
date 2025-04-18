@@ -133,19 +133,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
                         </p>
                         
                         <div className="flex items-center justify-between mt-auto">
-                          <div className="flex items-center">
-                            <div className="w-8 h-8 rounded-full overflow-hidden relative mr-2">
-                              <Image
-                                src={post.author.avatar}
-                                alt={post.author.name}
-                                fill
-                                className="object-cover"
-                              />
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium text-navy">{post.author.name}</p>
-                            </div>
-                          </div>
+                          <div className="text-sm font-medium text-navy">{post.author.name}</div>
                           
                           <div className="flex items-center text-xs text-foreground-muted">
                             <Calendar className="w-3 h-3 mr-1" />
